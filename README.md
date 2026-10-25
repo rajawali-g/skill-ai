@@ -1,29 +1,44 @@
 # 🧠 Antigravity AI Skills & Configuration Backup
 
-Repositori ini berisi seluruh cadangan (*backup*) keahlian (*skills*), aturan penalaran desain (*design reasoning*), pola arsitektur front-end (Vue 3/Nuxt), backend API (CodeIgniter 4), dan konfigurasi global untuk asisten koding **Google Antigravity**.
+Repositori ini berisi seluruh cadangan (*backup*) keahlian (*skills*), aturan penalaran desain (*design reasoning*), pola arsitektur front-end (Vue 3/Nuxt), backend API (CodeIgniter 4), audit keamanan aplikasi (*bug hunter* / OWASP), katalog master *Awesome Agent Skills*, dan konfigurasi global untuk asisten koding **Google Antigravity**.
 
 ---
 
-## 📦 Isi Lengkap Backup (170+ Skills)
+## 📦 Isi Lengkap Backup (179+ Skills)
 
-### 1. Backend: CodeIgniter 4 Suite (`skills/codeigniter4/`)
-Koleksi lengkap standar arsitektur REST API & aplikasi CodeIgniter 4:
-- **`ci4-api`**: Pembuatan RESTful controller (`ResourceController`), standardisasi envelope JSON response, pagination, CORS handling, dan webhook.
-- **`ci4-shield`**: Sistem otentikasi CodeIgniter Shield (Bearer tokens, Personal Access Tokens, Session auth, role-based permissions).
+### 1. 🛡️ Security Audit & Bug Hunter Suite (`skills/security/`)
+Koleksi lengkap audit kelayakan keamanan aplikasi berbasis standar global:
+- **`owasp-security`**: Standar **OWASP Top 10:2025** dan **ASVS 5.0**. Memeriksa kerentanan kode di 20+ bahasa (termasuk PHP dan TypeScript/JavaScript), meliputi:
+  - *Broken Access Control (IDOR, role bypass)*
+  - *Cryptographic Failures (kebocoran API key, hardcoded JWT secrets)*
+  - *Injection (SQL Injection, Command Injection, SSRF)*
+  - *Cross-Site Scripting (XSS) & CSRF*
+  - *Insecure Design & Supply Chain Checks*
+- **`security-audit`**: Audit keamanan komprehensif dari Netresearch DTT:
+  - Analisis mendalam celah arsitektur web & PHP (80+ PHP security checkpoints).
+  - Klasifikasi kerentanan menggunakan **CWE Top 25** dan kalkulasi skor risiko **CVSS v3.1 / v4.0**.
+  - Rekomendasi kode remediasi (*drop-in fix*) langsung.
+
+### 2. 📚 Awesome Agent Skills Master Catalog (`skills/awesome-agent-skills/`)
+- Katalog resmi dari **VoltAgent** yang merangkum **1.497+ Official Agent Skills** dari tim rekayasa terkemuka dunia (Vercel, Supabase, Cloudflare, Stripe, Anthropic, Sentry, Better Auth, GSAP, TestMu AI, dll.).
+- Terintegrasi sebagai skill lokal (`awesome-agent-skills`) sehingga Antigravity dapat mencari rekomendasi tools resmi kapan saja melalui file referensi `directory.md`.
+
+### 3. 🐘 Backend: CodeIgniter 4 Suite (`skills/codeigniter4/`)
+- **`ci4-api`**: Pembuatan RESTful controller (`ResourceController`), standardisasi envelope JSON response, CORS handling, dan webhook.
+- **`ci4-shield`**: Otentikasi API CodeIgniter Shield (Bearer tokens, Personal Access Tokens, Session auth, role-based permissions).
 - **`ci4` & `ci4-advanced`**: Pola Entity mapping, Model validation rules, isolated migrations, dan module auto-discovery.
 - **`codeigniter`**: Panduan pengujian unit test PHPUnit (`CIUnitTestCase`, `FeatureTestTrait`) dan filter keamanan.
 
-### 2. Frontend: Vue 3 & Nuxt Ecosystem (`skills/vue-ecosystem/`)
-Koleksi keahlian lengkap untuk pengembangan antarmuka modern:
+### 4. 🟢 Frontend: Vue 3 & Nuxt Ecosystem (`skills/vue-ecosystem/`)
 - **`vue-best-practices`**: Standar Vue 3 Composition API `<script setup lang="ts">`, reaktivitas (`ref`, `computed`, `watchEffect`), dan composables modular.
 - **`vue-pinia-best-practices` & `pinia`**: State management Pinia terpusat, setup stores, dan pencegahan error reaktivitas.
 - **`vue-router-best-practices`**: Dynamic routing, route meta, dan navigation auth guards.
-- **`vueuse-functions`**: Koleksi utilitas VueUse siap pakai untuk interaksi browser, sensor, dan animasi.
+- **`vueuse-functions`**: Pemanfaatan utilitas VueUse untuk interaksi browser, sensor, dan animasi.
 - **`nuxt` & `nuxt-ui`**: Server-Side Rendering (SSR), composables `useFetch` / `$fetch`, Nuxt UI components, dan NuxtHub.
 - **`nuxt-seo`**: Metadata otomatis, sitemap, OpenGraph tags, dan optimasi Core Web Vitals.
 - **`vite` & `vitest`**: Konfigurasi build tool Vite dan unit testing Vitest.
 
-### 3. UI UX Pro Max Suite (`skills/ui-ux-pro-max/`)
+### 5. 🎨 UI UX Pro Max Suite (`skills/ui-ux-pro-max/`)
 - **Reasoning Rules:** 192 profil industri & aturan UX.
 - **UI Styles:** 79 searchable styles (Glassmorphism, Minimalist, Bento Grid, Soft UI, Brutalism, dll.).
 - **Palet Warna:** 192 palet terkurasi sesuai psikologi industri.
@@ -31,24 +46,16 @@ Koleksi keahlian lengkap untuk pengembangan antarmuka modern:
 - **UX Guidelines:** 119 aturan WCAG & usability.
 - **Tech Stacks:** 22 stacks (HTML/Tailwind, Vue, Nuxt, React, Flutter, dll.).
 - **Search Engine:** Mesin pencari Python lokal (`scripts/search.py`).
-- **Komponen Grafis Pendukung:** `brand`, `banner-design`, `design`, `design-system`, `slides`, `ui-styling`.
+- **Komponen Pendukung:** `brand`, `banner-design`, `design`, `design-system`, `slides`, `ui-styling`.
 
-### 4. Designer Skills Suite (`skills/designer-skills/`)
+### 6. 🏛️ Designer Skills Suite (`skills/designer-skills/`)
 Koleksi 111 skills dan 9 plugin desain profesional dari Owl-Listener:
-- **`ui-design` (19 skills):** *color-system, typography-scale, spacing-system, layout-grid, dark-mode-design, responsive-design, Gestalt laws, von-restorff-effect.*
-- **`interaction-design` (22 skills):** *micro-interaction-spec, animation-principles, state-machine, form-design, navigation-patterns, loading-states, search-ux.*
-- **`design-systems` (11 skills):** *design-token, component-spec, icon-system, theming-system, accessibility-audit, localization-design.*
-- **`visual-critique` (7 skills):** *visual-hierarchy, typography-critique, color-critique, composition-critique, affordance-critique.*
-- **`ux-strategy` (12 skills):** *information-architecture, journey-map, experience-mapping, competitive-audit, service-blueprint.*
-- **`design-research` (14 skills):** *user-persona, empathy-map, jobs-to-be-done, usability-test-plan, card-sort-analysis.*
-- **`prototyping-testing` (10 skills):** *heuristic-evaluation, usability-testing, a-b-experiment-spec.*
-- **`design-ops` (9 skills):** *handoff-spec, design-qa-checklist, design-sprint-plan, design-debt-audit.*
-- **`designer-toolkit` (7 skills):** *design-rationale, ux-writing, presentation-structure, case-study-structure.*
+- `ui-design` (19 skills), `interaction-design` (22 skills), `design-systems` (11 skills), `visual-critique` (7 skills), `ux-strategy` (12 skills), `design-research` (14 skills), `prototyping-testing` (10 skills), `design-ops` (9 skills), `designer-toolkit` (7 skills).
 
-### 5. Taste Skill Suite (`skills/taste-skill/`)
+### 7. 🤌 Taste Skill Suite (`skills/taste-skill/`)
 - Anti-slop frontend art direction yang didistilasi dari 247 situs kurasi Awwwards & One Page Love.
 
-### 6. Global Configurations (`.gemini-config/`)
+### 8. ⚙️ Global Configurations (`.gemini-config/`)
 - `skills.json`: Pendaftaran seluruh path repositori ke Antigravity.
 - `mcp_config.json`: Konfigurasi Model Context Protocol.
 
@@ -70,5 +77,6 @@ Script akan otomatis:
 ---
 
 ## 🏷️ Release History
-- **v1.1.0**: Penambahan keahlian backend **CodeIgniter 4 API Suite** (`ci4-api`, `ci4-shield`, `ci4-advanced`, dll.) dan frontend **Vue 3 / Nuxt Ecosystem Suite** (`vue-best-practices`, `pinia`, `vueuse-functions`, `nuxt-ui`, dll.). Total 176 skills terpasang global.
+- **v1.2.0**: Penambahan modul **Security Audit & Bug Hunter Suite** (`owasp-security`, `security-audit`) dan master katalog **Awesome Agent Skills** (1,497+ skills terkurasi). Total 179 skills terpasang global.
+- **v1.1.0**: Penambahan keahlian backend CodeIgniter 4 API Suite dan frontend Vue 3 / Nuxt Ecosystem Suite.
 - **v1.0.0**: Initial full backup seluruh skill dasar (UI/UX Pro Max, Designer Skills Pack 111 skills, Taste Skill, dan konfigurasi Antigravity global).

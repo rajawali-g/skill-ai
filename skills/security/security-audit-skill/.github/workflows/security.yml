@@ -1,0 +1,135 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Netresearch DTT GmbH
+name: Security
+
+# Aggregated security scans for skill repos:
+#   betterleaks      — secret scanning (MIT-licensed, no paid licence required).
+#   zizmor           — static analysis of this repo's own workflows.
+#   dependency-review — on pull requests only.
+#   codeql           — CodeQL (actions, plus python/JS/Go when present).
+#                      Replaces code-scanning default setup, which never
+#                      analyses pull requests from forks: with a ruleset
+#                      `code_scanning` rule for CodeQL, every outside
+#                      contribution stayed blocked. Default setup must be
+#                      disabled in the repository settings, or GitHub refuses
+#                      the uploads of this job.
+#   composer-audit   — `composer audit` AND an Opengrep SAST scan; the called
+#                      reusable runs both unless skip-opengrep is set. Every
+#                      skill repo ships a composer.json for split-licensing /
+#                      Packagist distribution.
+#
+# Top-level `permissions: {}` denies everything by default; each reusable
+# caller job re-declares the exact union its reusable's jobs require, so the
+# token passed to each reusable is fully explicit and never relies on the
+# repo default. This is the same pattern proven in netresearch/.github's
+# go-app template (top {} + per-job security-events: write).
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  # A merge queue waits for every required context on its gh-readonly-queue
+  # ref; a workflow without this trigger never reports there and the queue
+  # ejects the entry when its timeout expires.
+  merge_group:
+  # Weekly run over the unchanged tree: CodeQL picks up new queries and
+  # composer-audit new advisories even when nothing is pushed. CodeQL default
+  # setup scanned weekly, and this workflow replaces it.
+  schedule:
+    - cron: '30 4 * * 1'
+
+permissions: {}
+
+# ANY JOB ADDED BELOW MUST ALSO BE ADDED TO `gate.needs`. The gate is the
+# context a branch rule should require, so a job missing from that list is a
+# job whose failure cannot block a merge -- the coverage loss is silent, and
+# nothing in CI catches it. GitHub Actions does not support YAML anchors in
+# workflow files, so the list has to be kept in step by hand.
+jobs:
+  betterleaks:
+    uses: netresearch/.github/.github/workflows/betterleaks.yml@main
+    permissions:
+      contents: read
+      security-events: write
+
+  zizmor:
+    uses: netresearch/.github/.github/workflows/zizmor.yml@main
+    permissions:
+      contents: read
+      security-events: write
+
+  # No caller-level `if:` here. The reusable's job already runs on
+  # `pull_request` only, and a job skipped INSIDE the reusable still posts its
+  # check-run `dependency-review / Dependency Review` (as skipped, which a
+  # required check accepts). A caller-level `if:` that is false skips the
+  # `uses:` job without materialising the called job's name, so that context
+  # would never appear on a merge_group ref.
+  dependency-review:
+    uses: netresearch/.github/.github/workflows/dependency-review.yml@main
+    permissions:
+      contents: read
+      pull-requests: write
+
+  composer-audit:
+    uses: netresearch/typo3-ci-workflows/.github/workflows/security.yml@main
+    permissions:
+      contents: read
+      security-events: write
+
+  codeql:
+    uses: netresearch/.github/.github/workflows/codeql.yml@main
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    with:
+      languages: auto
+
+  # One stable check name for this workflow, so a branch rule has something it
+  # can require on EVERY event (same gate as templates/typo3-extension's
+  # checks.yml).
+  #
+  # The individual contexts are a poor thing to require under a merge queue.
+  # `dependency-review` compares the dependency delta of a pull request and has
+  # nothing to say on a queue ref; betterleaks and zizmor skip themselves on
+  # `merge_group` (betterleaks.yml, zizmor.yml); the code-scanning checks
+  # (`betterleaks`, `zizmor`, `Opengrep OSS`) are posted by the
+  # github-advanced-security app against the pull request, not by these jobs.
+  # Require `All security checks` instead -- it depends on every job here and
+  # its name does not change with the event.
+  gate:
+    name: All security checks
+    needs:
+      - betterleaks
+      - zizmor
+      - dependency-review
+      - composer-audit
+      - codeql
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions: {}
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2.22.2
+        with:
+          egress-policy: audit
+
+      # `skipped` passes: a job that does not apply to this event has nothing
+      # to say about the commit. Only `failure` and `cancelled` fail the gate.
+      - name: Fail unless every job succeeded or was skipped
+        shell: bash
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          bad=$(jq -r '
+            to_entries[]
+            | select(.value.result != "success" and .value.result != "skipped")
+            | "\(.key)=\(.value.result)"' <<<"$RESULTS")
+          if [ -n "$bad" ]; then
+            echo "::error::Security checks gate failed — $(tr "\n" " " <<<"$bad")"
+            exit 1
+          fi
+          jq -r 'to_entries[] | "  \(.key): \(.value.result)"' <<<"$RESULTS"
+          echo "All jobs succeeded or were skipped."

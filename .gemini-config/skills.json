@@ -44,6 +44,15 @@
                     },
                     {
                         "path":  "C:/Users/User/.gemini/nuxt-skills/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/claude-code-owasp/.claude/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/security-audit-skill/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/awesome-agent-skills/skills"
                     }
                 ]
 }

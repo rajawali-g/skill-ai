@@ -82,6 +82,25 @@ if (Test-Path "$scriptRoot\skills\vue-ecosystem\nuxt-skills") {
     Copy-Item -Recurse -Force "$scriptRoot\skills\vue-ecosystem\nuxt-skills\*" $nuxtDest
 }
 
+# Security Audit & Bug Hunter Suite
+if (Test-Path "$scriptRoot\skills\security\claude-code-owasp") {
+    $owaspDest = Join-Path $geminiDir "claude-code-owasp"
+    New-Item -ItemType Directory -Force -Path $owaspDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\security\claude-code-owasp\*" $owaspDest
+}
+if (Test-Path "$scriptRoot\skills\security\security-audit-skill") {
+    $auditDest = Join-Path $geminiDir "security-audit-skill"
+    New-Item -ItemType Directory -Force -Path $auditDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\security\security-audit-skill\*" $auditDest
+}
+
+# Awesome Agent Skills Catalog
+if (Test-Path "$scriptRoot\skills\awesome-agent-skills") {
+    $awesomeDest = Join-Path $geminiDir "awesome-agent-skills"
+    New-Item -ItemType Directory -Force -Path $awesomeDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\awesome-agent-skills\*" $awesomeDest
+}
+
 # 4. Buat Directory Junctions di ~/.gemini/config/skills/
 Write-Host "[4/4] Mendaftarkan Junctions di global skills directory..." -ForegroundColor Yellow
 $allSkillMds = Get-ChildItem -Recurse $geminiDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory

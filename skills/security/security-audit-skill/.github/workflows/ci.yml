@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Netresearch DTT GmbH
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  merge_group:
+
+permissions: {}
+
+jobs:
+  ci:
+    uses: netresearch/skill-repo-skill/.github/workflows/ci-python.yml@main
+    permissions:
+      contents: read
+    with:
+      python-versions: '["3.12", "3.13"]'
+      test-command: 'uv run --python "$PYTHON_VERSION" scripts/test_risky_patterns.py && uv run --python "$PYTHON_VERSION" scripts/test_check_risky_command.py && uv run --python "$PYTHON_VERSION" scripts/test_audit_scripts.py'
