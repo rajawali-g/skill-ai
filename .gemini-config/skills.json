@@ -32,6 +32,18 @@
                     },
                     {
                         "path":  "C:/Users/User/.gemini/designer-skills/visual-critique/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/ci4-app-api-skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/codeigniter-skills/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/vuejs-ai-skills/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/nuxt-skills/skills"
                     }
                 ]
 }

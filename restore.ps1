@@ -40,7 +40,6 @@ $coreSkills = @("ui-ux-pro-max", "brand", "banner-design", "design", "design-sys
 foreach ($skill in $coreSkills) {
     $src = Join-Path "$scriptRoot\skills" $skill
     if (Test-Path $src) {
-        $dest = Join-Path $agentsSkillsDir $skill
         Copy-Item -Recurse -Force $src $agentsSkillsDir
     }
 }
@@ -57,6 +56,30 @@ $tasteDest = Join-Path $geminiDir "taste-skill\skills"
 if (Test-Path "$scriptRoot\skills\taste-skill") {
     New-Item -ItemType Directory -Force -Path $tasteDest | Out-Null
     Copy-Item -Recurse -Force "$scriptRoot\skills\taste-skill\*" $tasteDest
+}
+
+# CodeIgniter 4 Skills suite
+if (Test-Path "$scriptRoot\skills\codeigniter4\ci4-app-api-skills") {
+    $ci4AppDest = Join-Path $geminiDir "ci4-app-api-skills"
+    New-Item -ItemType Directory -Force -Path $ci4AppDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\codeigniter4\ci4-app-api-skills\*" $ci4AppDest
+}
+if (Test-Path "$scriptRoot\skills\codeigniter4\codeigniter-skills") {
+    $ci4CoreDest = Join-Path $geminiDir "codeigniter-skills"
+    New-Item -ItemType Directory -Force -Path $ci4CoreDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\codeigniter4\codeigniter-skills\*" $ci4CoreDest
+}
+
+# Vue 3 & Nuxt Ecosystem Skills suite
+if (Test-Path "$scriptRoot\skills\vue-ecosystem\vuejs-ai-skills") {
+    $vueDest = Join-Path $geminiDir "vuejs-ai-skills"
+    New-Item -ItemType Directory -Force -Path $vueDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\vue-ecosystem\vuejs-ai-skills\*" $vueDest
+}
+if (Test-Path "$scriptRoot\skills\vue-ecosystem\nuxt-skills") {
+    $nuxtDest = Join-Path $geminiDir "nuxt-skills"
+    New-Item -ItemType Directory -Force -Path $nuxtDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\vue-ecosystem\nuxt-skills\*" $nuxtDest
 }
 
 # 4. Buat Directory Junctions di ~/.gemini/config/skills/

@@ -1,0 +1,23 @@
+{
+  "name": "codeigniter-skills",
+  "owner": {
+    "name": "yasserstudio",
+    "url": "https://github.com/yasserstudio"
+  },
+  "metadata": {
+    "description": "Agent skill for CodeIgniter 3 and CodeIgniter 4 development — controllers, models, routing, database, security, file uploads, email, caching, testing, authentication, and deployment",
+    "version": "1.0.0",
+    "repository": "https://github.com/yasserstudio/codeigniter-skills"
+  },
+  "plugins": [
+    {
+      "name": "codeigniter-skills",
+      "description": "Comprehensive CodeIgniter skill covering CI3 (3.1.x) and CI4 (4.7.x): version-aware controllers, models with mass assignment protection, query builder with transactions, routing, filters/middleware, migrations, file uploads, email, caching, services/DI, events, view layouts, View Cells, Spark CLI, PHPUnit testing, Shield authentication, content negotiation, server config, and production deployment. Includes 30+ CI3-to-CI4 migration mappings and a 13-item security checklist.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/codeigniter"
+      ]
+    }
+  ]
+}
