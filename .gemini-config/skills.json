@@ -1,0 +1,37 @@
+{
+    "entries":  [
+                    {
+                        "path":  "C:/Users/User/.gemini/taste-skill/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.agents/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/design-ops/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/design-research/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/design-systems/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/designer-toolkit/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/interaction-design/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/prototyping-testing/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/ui-design/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/ux-strategy/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/designer-skills/visual-critique/skills"
+                    }
+                ]
+}
