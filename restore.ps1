@@ -101,6 +101,23 @@ if (Test-Path "$scriptRoot\skills\awesome-agent-skills") {
     Copy-Item -Recurse -Force "$scriptRoot\skills\awesome-agent-skills\*" $awesomeDest
 }
 
+# Three.js 3D Graphics Suite (WebGL r186, WebGPU/TSL, Physics & WebXR)
+if (Test-Path "$scriptRoot\skills\threejs\threejs-core-skills") {
+    $threeCoreDest = Join-Path $geminiDir "threejs-core-skills"
+    New-Item -ItemType Directory -Force -Path $threeCoreDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-core-skills\*" $threeCoreDest
+}
+if (Test-Path "$scriptRoot\skills\threejs\threejs-webgpu-skills") {
+    $threeGpuDest = Join-Path $geminiDir "threejs-webgpu-skills"
+    New-Item -ItemType Directory -Force -Path $threeGpuDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-webgpu-skills\*" $threeGpuDest
+}
+if (Test-Path "$scriptRoot\skills\threejs\threejs-interactive-skills") {
+    $threeInteractDest = Join-Path $geminiDir "threejs-interactive-skills"
+    New-Item -ItemType Directory -Force -Path $threeInteractDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-interactive-skills\*" $threeInteractDest
+}
+
 # 4. Buat Directory Junctions di ~/.gemini/config/skills/
 Write-Host "[4/4] Mendaftarkan Junctions di global skills directory..." -ForegroundColor Yellow
 $allSkillMds = Get-ChildItem -Recurse $geminiDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory

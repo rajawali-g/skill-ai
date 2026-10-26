@@ -4,7 +4,7 @@ git push -u origin main --tags
 if %errorlevel% equ 0 (
     echo.
     echo ========================================================
-    echo   Backup and Release v1.0.0 successfully pushed!
+    echo   Backup and Releases successfully pushed!
     echo ========================================================
 ) else (
     echo.

@@ -53,6 +53,15 @@
                     },
                     {
                         "path":  "C:/Users/User/.gemini/awesome-agent-skills/skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/threejs-core-skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/threejs-webgpu-skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/threejs-interactive-skills"
                     }
                 ]
 }
