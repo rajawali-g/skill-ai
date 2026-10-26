@@ -118,6 +118,18 @@ if (Test-Path "$scriptRoot\skills\threejs\threejs-interactive-skills") {
     Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-interactive-skills\*" $threeInteractDest
 }
 
+# GSAP Animation & Creative 3D Web Suite (Official GreenSock + MengTo + Three.js Integration)
+if (Test-Path "$scriptRoot\skills\gsap\gsap-official-skills") {
+    $gsapOfficialDest = Join-Path $geminiDir "gsap-official-skills"
+    New-Item -ItemType Directory -Force -Path $gsapOfficialDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\gsap\gsap-official-skills\*" $gsapOfficialDest
+}
+if (Test-Path "$scriptRoot\skills\gsap\gsap-creative-skills") {
+    $gsapCreativeDest = Join-Path $geminiDir "gsap-creative-skills"
+    New-Item -ItemType Directory -Force -Path $gsapCreativeDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\gsap\gsap-creative-skills\*" $gsapCreativeDest
+}
+
 # 4. Buat Directory Junctions di ~/.gemini/config/skills/
 Write-Host "[4/4] Mendaftarkan Junctions di global skills directory..." -ForegroundColor Yellow
 $allSkillMds = Get-ChildItem -Recurse $geminiDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory

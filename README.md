@@ -4,7 +4,7 @@ Repositori ini berisi seluruh cadangan (*backup*) keahlian (*skills*), aturan pe
 
 ---
 
-## 📦 Isi Lengkap Backup (222+ Skills)
+## 📦 Isi Lengkap Backup (235+ Skills)
 
 ### 1. 🛡️ Security Audit & Bug Hunter Suite (`skills/security/`)
 Koleksi lengkap audit kelayakan keamanan aplikasi berbasis standar global:
@@ -36,11 +36,29 @@ Paket keahlian grafis 3D terlengkap untuk WebGL, WebGPU, TSL (*Three.js Shading 
   - `threejs-audio`: Spatial & positional audio listener 3D.
   - `threejs-xr`: WebXR, VR controllers, AR hit-testing, dan interaksi spasial.
 
-### 3. 📚 Awesome Agent Skills Master Catalog (`skills/awesome-agent-skills/`)
+### 3. ✨ GSAP Animation & Creative 3D Web Suite (`skills/gsap/`) - *13 Skills*
+Integrasi resmi animasi GreenSock dan arsitektur penghubung ke visual Three.js:
+- **Official GreenSock Skills (`gsap-official-skills` - 8 Skills)**:
+  - `gsap-core`: Syntax dasar v3, tweens, targetting properti numeric Three.js.
+  - `gsap-timeline`: Sequencing animasi kompleks, orchestration label.
+  - `gsap-scrolltrigger`: Scroll-driven animation, scrubbing, pinning, trigger bounds.
+  - `gsap-frameworks`: Penggunaan `gsap.context()` & `ctx.revert()` di Vue 3, Nuxt, Svelte, React untuk pencegahan memory leak.
+  - `gsap-react`: Integrasi hook `@gsap/react` dan `useGSAP`.
+  - `gsap-plugins`: Flip, Draggable, MotionPath, Observer, TextPlugin, SplitText.
+  - `gsap-performance`: Optimasi frame rate, koordinasi render ticker, GPU compositing.
+  - `gsap-utils`: Math helpers (`clamp`, `mapRange`, `interpolate`, `pipe`, `wrap`).
+- **Creative & Three.js Bridging Skills (`gsap-creative-skills` - 5 Skills)**:
+  - `threejs-gsap-integration`: Standar arsitektur penghubung Three.js + GSAP (animasi kamera, sinkronisasi `gsap.ticker` tanpa stutter, mouse parallax `quickTo`, pembersihan siklus hidup Vue/React).
+  - `build-threejs-scroll-worlds`: Membangun dunia 3D persisten yang dikendalikan oleh native scroll melalui authored chapters.
+  - `cinematic-gsap-lenis-motion-system`: Sistem gerak sinematik mewah kelas editorial Awwwards dengan GSAP + Lenis smooth scroll.
+  - `gsap-scrolltrigger-storytelling`: Storytelling produk sticky bertahap dan progressive UI reveals.
+  - `build-awwwards-quality-sites`: Panduan koreografi visual standar Awwwards Site of the Day.
+
+### 4. 📚 Awesome Agent Skills Master Catalog (`skills/awesome-agent-skills/`)
 - Katalog resmi dari **VoltAgent** yang merangkum **1.497+ Official Agent Skills** dari tim rekayasa terkemuka dunia (Vercel, Supabase, Cloudflare, Stripe, Anthropic, Sentry, Better Auth, GSAP, TestMu AI, dll.).
 - Terintegrasi sebagai skill lokal (`awesome-agent-skills`) sehingga Antigravity dapat mencari rekomendasi tools resmi kapan saja melalui file referensi `directory.md`.
 
-### 4. 🐘 Backend: CodeIgniter 4 Suite (`skills/codeigniter4/`)
+### 5. 🐘 Backend: CodeIgniter 4 Suite (`skills/codeigniter4/`)
 - **`ci4-api`**: Pembuatan RESTful controller (`ResourceController`), standardisasi envelope JSON response, CORS handling, dan webhook.
 - **`ci4-shield`**: Otentikasi API CodeIgniter Shield (Bearer tokens, Personal Access Tokens, Session auth, role-based permissions).
 - **`ci4` & `ci4-advanced`**: Pola Entity mapping, Model validation rules, isolated migrations, dan module auto-discovery.
@@ -94,7 +112,8 @@ Script akan otomatis:
 ---
 
 ## 🏷️ Release History
-- **v1.3.0**: Penambahan **Three.js 3D Graphics & WebGPU Suite** (43 skills lengkap: WebGL r186, WebGPU / TSL procedural simulation, Rapier/Cannon physics, spatial audio, dan WebXR). Total **222 skills** terpasang global.
+- **v1.4.0**: Penambahan **GSAP Animation & Creative 3D Web Suite** (13 skills: 8 skills resmi GreenSock + 5 skills bridging Three.js scrollytelling & Awwwards motion). Total **235 skills** terpasang global.
+- **v1.3.0**: Penambahan **Three.js 3D Graphics & WebGPU Suite** (43 skills lengkap: WebGL r186, WebGPU / TSL procedural simulation, Rapier/Cannon physics, spatial audio, dan WebXR). Total 222 skills terpasang global.
 - **v1.2.0**: Penambahan modul **Security Audit & Bug Hunter Suite** (`owasp-security`, `security-audit`) dan master katalog **Awesome Agent Skills** (1,497+ skills terkurasi). Total 179 skills terpasang global.
 - **v1.1.0**: Penambahan keahlian backend CodeIgniter 4 API Suite dan frontend Vue 3 / Nuxt Ecosystem Suite.
 - **v1.0.0**: Initial full backup seluruh skill dasar (UI/UX Pro Max, Designer Skills Pack 111 skills, Taste Skill, dan konfigurasi Antigravity global).

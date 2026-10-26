@@ -62,6 +62,12 @@
                     },
                     {
                         "path":  "C:/Users/User/.gemini/threejs-interactive-skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/gsap-official-skills"
+                    },
+                    {
+                        "path":  "C:/Users/User/.gemini/gsap-creative-skills"
                     }
                 ]
 }
