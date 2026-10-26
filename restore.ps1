@@ -130,6 +130,13 @@ if (Test-Path "$scriptRoot\skills\gsap\gsap-creative-skills") {
     Copy-Item -Recurse -Force "$scriptRoot\skills\gsap\gsap-creative-skills\*" $gsapCreativeDest
 }
 
+# Motion Design & Choreography Suite (LottieFiles Universal Principles + FrankX Motion Directors & Auditors)
+if (Test-Path "$scriptRoot\skills\motion") {
+    $motionDest = Join-Path $geminiDir "motion-design-skills"
+    New-Item -ItemType Directory -Force -Path $motionDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\motion\*" $motionDest
+}
+
 # 4. Buat Directory Junctions di ~/.gemini/config/skills/
 Write-Host "[4/4] Mendaftarkan Junctions di global skills directory..." -ForegroundColor Yellow
 $allSkillMds = Get-ChildItem -Recurse $geminiDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory

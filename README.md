@@ -4,7 +4,7 @@ Repositori ini berisi seluruh cadangan (*backup*) keahlian (*skills*), aturan pe
 
 ---
 
-## 📦 Isi Lengkap Backup (235+ Skills)
+## 📦 Isi Lengkap Backup (239+ Skills)
 
 ### 1. 🛡️ Security Audit & Bug Hunter Suite (`skills/security/`)
 Koleksi lengkap audit kelayakan keamanan aplikasi berbasis standar global:
@@ -54,11 +54,18 @@ Integrasi resmi animasi GreenSock dan arsitektur penghubung ke visual Three.js:
   - `gsap-scrolltrigger-storytelling`: Storytelling produk sticky bertahap dan progressive UI reveals.
   - `build-awwwards-quality-sites`: Panduan koreografi visual standar Awwwards Site of the Day.
 
-### 4. 📚 Awesome Agent Skills Master Catalog (`skills/awesome-agent-skills/`)
+### 4. 🎭 Motion Design & Choreography Suite (`skills/motion/`) - *4 Skills*
+Fondasi estetika, prinsip gerak universal, dan tata kelola ritme animasi web:
+- **`motion-design`** *(LottieFiles Universal)*: Prinsip animasi Disney yang diadaptasi untuk antarmuka web (antisipasi, overshoot, follow-through), durasi mikro-interaksi (100–300ms vs scene 800ms+), larangan linear easing untuk pergerakan spasial, dan arketipe kepribadian gerak (*Playful*, *Premium*, *Corporate*, *Energetic*).
+- **`motion-director`** *(FrankX)*: Desain konsep gerak, pemilihan stack optimal (CSS vs GSAP vs Rive vs Three.js), dan token waktu.
+- **`site-motion-excellence-director`** *(FrankX)*: Koreografi situs sinematik, *still-frame gate* (dilarang menganimasi frame statis yang buruk), dan kepatuhan `prefers-reduced-motion`.
+- **`web-motion-auditor`** *(FrankX)*: Evaluasi audit kualitas animasi web, pembatasan *stagger delay* agar pengguna tidak menunggu konten, dan pengujian performa FPS.
+
+### 5. 📚 Awesome Agent Skills Master Catalog (`skills/awesome-agent-skills/`)
 - Katalog resmi dari **VoltAgent** yang merangkum **1.497+ Official Agent Skills** dari tim rekayasa terkemuka dunia (Vercel, Supabase, Cloudflare, Stripe, Anthropic, Sentry, Better Auth, GSAP, TestMu AI, dll.).
 - Terintegrasi sebagai skill lokal (`awesome-agent-skills`) sehingga Antigravity dapat mencari rekomendasi tools resmi kapan saja melalui file referensi `directory.md`.
 
-### 5. 🐘 Backend: CodeIgniter 4 Suite (`skills/codeigniter4/`)
+### 6. 🐘 Backend: CodeIgniter 4 Suite (`skills/codeigniter4/`)
 - **`ci4-api`**: Pembuatan RESTful controller (`ResourceController`), standardisasi envelope JSON response, CORS handling, dan webhook.
 - **`ci4-shield`**: Otentikasi API CodeIgniter Shield (Bearer tokens, Personal Access Tokens, Session auth, role-based permissions).
 - **`ci4` & `ci4-advanced`**: Pola Entity mapping, Model validation rules, isolated migrations, dan module auto-discovery.
@@ -112,7 +119,8 @@ Script akan otomatis:
 ---
 
 ## 🏷️ Release History
-- **v1.4.0**: Penambahan **GSAP Animation & Creative 3D Web Suite** (13 skills: 8 skills resmi GreenSock + 5 skills bridging Three.js scrollytelling & Awwwards motion). Total **235 skills** terpasang global.
+- **v1.5.0**: Penambahan **Motion Design & Choreography Suite** (4 skills: LottieFiles Universal Animation Principles + FrankX Motion Director, Site Choreography, dan Web Motion Auditor). Melengkapi *The Trinity of Motion* (Motion Design + GSAP + Three.js). Total **239 skills** terpasang global.
+- **v1.4.0**: Penambahan **GSAP Animation & Creative 3D Web Suite** (13 skills: 8 skills resmi GreenSock + 5 skills bridging Three.js scrollytelling & Awwwards motion). Total 235 skills terpasang global.
 - **v1.3.0**: Penambahan **Three.js 3D Graphics & WebGPU Suite** (43 skills lengkap: WebGL r186, WebGPU / TSL procedural simulation, Rapier/Cannon physics, spatial audio, dan WebXR). Total 222 skills terpasang global.
 - **v1.2.0**: Penambahan modul **Security Audit & Bug Hunter Suite** (`owasp-security`, `security-audit`) dan master katalog **Awesome Agent Skills** (1,497+ skills terkurasi). Total 179 skills terpasang global.
 - **v1.1.0**: Penambahan keahlian backend CodeIgniter 4 API Suite dan frontend Vue 3 / Nuxt Ecosystem Suite.
