@@ -100,15 +100,36 @@ Untuk nuansa visual dan estetika, mana yang paling mewakili karakter brand Anda?
 
 ---
 
-## 🗄️ Putaran 3: Arsitektur Data & Database
+## 🗄️ Putaran 3: Rekomendasi Tech Stack & Database
 
+Sistem dapat merekomendasikan salah satu dari 7 Arketipe Stack Web (berdasarkan **[tech_stack_matrix.md](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)**) atau menanyakan preferensi pengguna:
 ```text
-Bagaimana kebutuhan data dan backend website Anda?
-1. 🍃 NoSQL (MongoDB / Firebase / KV): Cocok jika data dinamis, schema-less, atau butuh chat/katalog fleksibel.
-2. 🪶 SQLite: Database lokal berbasis berkas tunggal (.sqlite3), zero-configuration, super cepat dan portabel untuk MVP atau dashboard.
-3. 🐬 MySQL / MariaDB: Standar relasional industri, transaksi ACID ketat, cocok untuk sistem terhubung CodeIgniter 4 (/ci4).
-4. 🐘 PostgreSQL: RDBMS enterprise tingkat lanjut, mendukung kueri kompleks, JSONB super cepat, dan Supabase cloud.
-5. ⚡ None / Static: Seluruh konten disimpan di file HTML/JSON statis tanpa database backend (cepat, hemat hosting, mudah di-deploy).
+Berdasarkan jenis website yang Anda inginkan, berikut rekomendasi arsitektur teknologi (Tech Stack) & opsi databasenya:
+
+🏛️ 1. Portal Pemerintah / CMS Resmi:
+   • Stack: CodeIgniter 4 / Laravel + Bootstrap 5 + MySQL/MariaDB + SEO & Audit Log (Sinergi /ci4 & /security)
+
+⚡ 2. Portal Modern Berbasis API:
+   • Stack: FastAPI / Laravel + Vue 3 (Composition API) + TypeScript + PostgreSQL (Sinergi /vue & /nuxt)
+
+🤖 3. Platform AI Assistant & RAG:
+   • Stack: FastAPI + Vue 3 + PostgreSQL (pgvector) + Worker Queue
+
+🏢 4. Enterprise Corporate System:
+   • Stack: ASP.NET Core (.NET 9) / Spring Boot (Java) + Angular / React + PostgreSQL
+
+🚀 5. Situs Konten Super Cepat / Static:
+   • Stack: Astro / Hugo / HTML5 Semantik Murni + Cloudflare Edge
+
+🛍️ 6. Toko Online & E-Commerce:
+   • Stack: WooCommerce / Medusa.js + Payment Gateway QRIS/VA + PostgreSQL/MySQL
+
+Bagaimana preferensi backend & database Anda?
+1. 🍃 NoSQL (MongoDB / Firebase / KV): Schema-less, fleksibel untuk data dinamis & chat realtime.
+2. 🪶 SQLite: Database berkas tunggal (.sqlite3), zero-config, super cepat untuk MVP/dashboard lokal.
+3. 🐬 MySQL / MariaDB: Standar relasional RDBMS industri terpopuler, ACID ketat, hosting luas.
+4. 🐘 PostgreSQL: RDBMS enterprise tingkat lanjut, mendukung JSONB & pgvector AI super cepat.
+5. ⚡ None / Static Web: Seluruh konten disimpan di file HTML/JSON statis tanpa database backend.
 ```
 
 ---

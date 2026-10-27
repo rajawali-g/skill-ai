@@ -102,16 +102,31 @@ Sistem merekomendasikan 3 gaya yang paling cocok berdasarkan profil industri (te
 - **Gaya B: Bento Grid Minimalist** (Rapi, modular, putih/abu bersih, struktur informasi sangat teratur).
 - **Gaya C: Immersive Nature / 3D Cinematic** (Segar, warna alam hidup, canvas 3D interaktif, foto bertekstur nyata).
 
-### Putaran 3: Arsitektur Data & Pemilihan Database (Fase 2)
-Sistem menanyakan dan menyepakati kebutuhan persistensi data website dengan 4 opsi database utama:
+### Putaran 3: Rekomendasi Tech Stack & Pemilihan Database (Fase 2)
+Sistem menanyakan dan menyepakati kebutuhan stack komputasi serta persistensi data website. WebBuilder didukung oleh **[Master Matriks 545 Teknologi Web](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)** untuk memberikan rekomendasi stack terbaik sesuai kasus penggunaan:
 
+#### 🎯 Rekomendasi Stack Berdasarkan Arketipe Proyek:
+| Arketipe Proyek | Rekomendasi Stack | Karakteristik & Pertimbangan |
+| :--- | :--- | :--- |
+| **Portal Pemerintah / CMS** | **CodeIgniter 4** / **Laravel** + **Bootstrap 5** / **Tailwind** + WYSIWYG + Modul SEO + Audit Log | Ringan, aman, mudah dikelola tim PHP lokal, biaya hosting ekonomis, integrasi langsung `/ci4` & `/security`. |
+| **Portal Modern Berbasis API** | **Laravel** / **FastAPI** + **Vue 3** (Composition API) + **TypeScript** + **PostgreSQL** / **MySQL** | Pemisahan tegas frontend/backend, reaktivitas tinggi, tipe data aman dengan `/vue` & `/nuxt`. |
+| **AI Assistant / RAG Platform** | **FastAPI** + **Vue 3** / **Streamlit** + **PostgreSQL (pgvector)** + Worker Queue | Caching interaktif, pemisahan retrieval dokumen, dan antarmuka percakapan ramah pengguna. |
+| **Enterprise .NET** | **ASP.NET Core** + **Blazor** / **Angular** / **React** + **SQL Server** / **PostgreSQL** | Standar korporat skala besar, ekosistem Microsoft, kontrol keamanan dan tata kelola enterprise ketat. |
+| **Aplikasi Java Enterprise** | **Spring Boot** + **Angular** / **React** / **Vue** + **PostgreSQL** / **Oracle** | Stabilitas tinggi transaksi perbankan/finansial, arsitektur microservices JVM matang. |
+| **Situs Statis / Dokumentasi** | **Astro** / **Hugo** / **11ty** + Headless CMS (Decap / Strapi) | Waktu muat ultra cepat (0ms JS by default), skor Core Web Vitals 100, hosting edge gratis. |
+| **E-Commerce & Transaksional** | **WooCommerce**, **Medusa.js**, **Saleor**, **Shopware**, atau Shopify SaaS | Integrasi payment gateway lokal (QRIS, VA), kontrol inventaris multi-cabang, dan audit transaksi. |
+
+#### 🗄️ Matriks Pemilihan Database Utama:
 | No | Tipe Database | Karakteristik Utama | Rekomendasi Kasus Penggunaan | Sinergi Stack / Skill |
 | :-: | :--- | :--- | :--- | :--- |
 | **1** | **NoSQL** *(MongoDB / Firebase / CouchDB / KV)* | Fleksibel tanpa skema kaku (*schema-less*), penyimpanan dokumen JSON hierarkis, replikasi horizontal mudah. | Real-time chat, katalog produk dengan atribut dinamis, log aktivitas pengguna, formulir survei bebas. | `/vue` / Node.js (Mongoose / Firebase SDK) |
 | **2** | **SQLite** | *Serverless*, *zero-configuration*, database berbasis satu file lokal (`.sqlite3` / `.db`), cepat, sangat ringan dan portabel. | Prototipe cepat (MVP), website lokal/desktop, dashboard personal, edge runtime (NuxtHub / Cloudflare D1 / Turso). | `/vue` + `/nuxt` (Drizzle ORM) atau Python |
 | **3** | **MySQL / MariaDB** | Standar industri relasional (RDBMS), performa kueri relasi tinggi, transaksi ACID ketat, kompatibilitas hosting terluas. | Aplikasi web korporat, e-commerce konvensional, portal instansi pemerintah, sistem manajemen relasional. | `/ci4` (CodeIgniter 4 Model, Query Builder & Shield) |
 | **4** | **PostgreSQL** | RDBMS tingkat lanjut (*object-relational*), mendukung kueri kompleks, JSONB indexing super cepat, geospasial (PostGIS). | Platform SaaS modern, sistem analitik data, portal skala enterprise, cloud database modern (Supabase / Neon). | `/ci4` atau `/vue` (Prisma / Supabase SDK) |
-| **-** | **None / Static Web** | Tanpa database backend; seluruh konten dikelola langsung di file HTML/JSON statis. | Landing page presentasi, company profile statis, web portofolio personal. | `/web-builder` murni |
+| **5** | **None / Static Web** | Tanpa database backend; seluruh konten dikelola langsung di file HTML/JSON statis. | Landing page presentasi, company profile statis, web portofolio personal. | `/web-builder` murni |
+
+*(Lihat katalog lengkap 545 teknologi, framework, dan tools di **[tech_stack_matrix.md](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)**)*
+
 
 ### Putaran 4: Pemilihan Fitur & Integrasi Spesifik (Katalog 55 Fitur)
 Sistem tidak membiarkan pengguna bingung meraba-raba fitur apa saja yang mungkin dibutuhkan. Sistem mengelompokkan **Katalog 55 Fitur Standar Industri** menjadi 6 Klaster Cerdas, atau pengguna dapat langsung memilih nomor fitur tertentu (misal: *"Saya ingin fitur 1, 2, 4, 8, 16, 21, 22, 47"*):
@@ -308,4 +323,6 @@ Sistem akan langsung menerapkan perubahan terfokus pada CSS/JS tanpa merusak str
 - [x] **Fase 4: Playbook Pertanyaan Terstruktur** (`references/interview_playbook.md`)
 - [x] **Fase 5: Katalog 55 Fitur & Integrasi Standar** (`references/feature_catalog.md`)
 - [x] **Fase 6: Pengujian & Registrasi Global Antigravity** (`/web-builder`)
+- [x] **Fase 7: Master Matriks 545 Teknologi Web & Rekomendasi Stack** (`references/tech_stack_matrix.md`)
+
 

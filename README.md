@@ -185,6 +185,7 @@ Framework otomasi pembuatan website modern melalui dialog percakapan iteratif (*
   - **Matriks 7 Tipe Tampilan:** Mendukung layout *Single-Page Scrollytelling*, *Multi-Page*, *Responsive Design*, *Card-Based (Bento Grid)*, *Grid-Heavy Magazine*, *Fullscreen Immersive*, dan *Dashboard / App-Like*.
   - **Arsitektur Database:** Opsi fleksibel untuk **NoSQL** (MongoDB/Firebase), **SQLite** (serverless lokal), **MySQL/MariaDB** (relasional CI4), **PostgreSQL** (enterprise/Supabase), atau **None / Static Web**.
   - **Master Katalog 55 Fitur & Integrasi:** Orkestrasi terstruktur 55 kapabilitas standar industri (UI/UX, Visualisasi Data, Keamanan, CMS, AI Chatbot, PWA, DevOps) dalam 6 klaster cerdas.
+  - **Master Matriks 545 Teknologi Web & Rekomendasi Stack:** Katalog referensi 545 runtime, framework, library, dan platform web dengan panduan resep stack untuk 7 arketipe proyek (Portal Pemerintah/CMS, Modern API, AI/RAG, Enterprise .NET, Java Enterprise, Static, E-Commerce).
   - **Script Scaffolding CLI (`scripts/scaffold_web.py`):** Perakitan instan kode semantik HTML5, CSS Design Tokens HSL, dark/light theme switcher, dan JavaScript modular berstandar Awwwards bebas slop.
 
 ### 13. ⚙️ Global Configurations (`.gemini-config/`)

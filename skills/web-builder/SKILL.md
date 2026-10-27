@@ -65,8 +65,8 @@ Tawarkan 3 rekomendasi gaya visual terkurasi (berkolaborasi dengan `/ui-ux`):
 
 ### 📍 Fase 2: Architecture, Database & Feature Blueprint
 
-#### 1. Penentuan Database
-Paparkan 4 opsi database utama sesuai kebutuhan aplikasi:
+#### 1. Penentuan Tech Stack & Database
+Gunakan panduan **[Master Matriks 545 Teknologi Web](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)** untuk merekomendasikan stack sesuai arketipe proyek (Portal Pemerintah/CMS, Modern API, AI/RAG, Enterprise .NET, Java, Static Web, E-Commerce), serta paparkan 5 opsi persistensi data:
 - 🍃 **NoSQL** *(MongoDB / Firebase / KV)*: Schema-less, dokumen JSON, cocok untuk katalog dinamis & chat realtime.
 - 🪶 **SQLite**: File lokal `.sqlite3`, zero-config, super cepat, ideal untuk MVP, dashboard personal, dan edge.
 - 🐬 **MySQL / MariaDB**: Standar RDBMS terpopuler, ACID relasional ketat, hosting luas, sinergi dengan CodeIgniter 4 (`/ci4`).
@@ -168,3 +168,4 @@ WebBuilder bertindak sebagai **Konduktor Utama** yang memanggil spesialisasi lai
 - **[README.md](file:///e:/project/htdocs/skill-ai/skills/web-builder/README.md)**: Gambaran arsitektur lengkap dan filosofi WebBuilder.
 - **[Interview Playbook](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/interview_playbook.md)**: Panduan naskah dialog percakapan terperinci langkah demi langkah.
 - **[Master Feature Catalog](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/feature_catalog.md)**: Panduan teknis & pola kode untuk 55 fitur & integrasi.
+- **[Master Tech Stack Matrix (545 Teknologi)](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)**: Matriks 545 teknologi web, framework, library, dan resep stack arketipe proyek.
