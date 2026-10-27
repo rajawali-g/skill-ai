@@ -66,7 +66,7 @@ lalu /gsap implementasikan animasinya dengan gsap.timeline dan pembersihan siklu
 
 ---
 
-## 📦 Isi Lengkap Backup (247+ Skills)
+## 📦 Isi Lengkap Backup (241 Skills)
 
 ### 1. 🛡️ Security Audit & Bug Hunter Suite (`skills/security/`)
 Koleksi lengkap audit kelayakan keamanan aplikasi berbasis standar global:
@@ -82,7 +82,7 @@ Koleksi lengkap audit kelayakan keamanan aplikasi berbasis standar global:
   - Klasifikasi kerentanan menggunakan **CWE Top 25** dan kalkulasi skor risiko **CVSS v3.1 / v4.0**.
   - Rekomendasi kode remediasi (*drop-in fix*) langsung.
 
-### 2. 📸 3D Web Image & PBR Suite (`skills/image-to-3d/`) - *2 Skills*
+### 2. 📸 3D Web Image & PBR Suite (`skills/image-to-3d/`) - *3 Skill files*
 Suite khusus untuk memproses dan mengembangkan foto 2D menjadi aset 3D Web fotorealistis:
 - **`image-3d`** *(Master Slash)*: Pemicu cepat inspeksi folder & konversi 3D via `/image-3d`.
 - **`image-to-3d-web`**:
@@ -94,7 +94,7 @@ Suite khusus untuk memproses dan mengembangkan foto 2D menjadi aset 3D Web fotor
 - **`fal-3d`**:
   - Mengubah foto 2D atau prompt menjadi model 3D nyata (`.glb` / `.gltf`) menggunakan model AI terdepan (Microsoft Trellis, Tencent Hunyuan3D v2, Tripo3D).
 
-### 3. 🎮 Three.js 3D Graphics & WebGPU Suite (`skills/threejs/`) - *43 Skills*
+### 3. 🎮 Three.js 3D Graphics & WebGPU Suite (`skills/threejs/`) - *44 Skill files*
 Paket keahlian grafis 3D terlengkap untuk WebGL, WebGPU, TSL (*Three.js Shading Language*), Physics, dan WebXR:
 - **`threejs`** *(Master Slash)*: Pemicu cepat rancang bangun 3D Web via `/threejs`.
 - **Core WebGL & R3F r186 (CloudAI-X - 13 Skills)**:
@@ -112,7 +112,7 @@ Paket keahlian grafis 3D terlengkap untuk WebGL, WebGPU, TSL (*Three.js Shading 
   - `threejs-audio`: Spatial & positional audio listener 3D.
   - `threejs-xr`: WebXR, VR controllers, AR hit-testing, dan interaksi spasial.
 
-### 4. ✨ GSAP Animation & Creative 3D Web Suite (`skills/gsap/`) - *13 Skills*
+### 4. ✨ GSAP Animation & Creative 3D Web Suite (`skills/gsap/`) - *14 Skill files*
 Integrasi resmi animasi GreenSock dan arsitektur penghubung ke visual Three.js:
 - **`gsap`** *(Master Slash)*: Pemicu cepat animasi & scrollytelling via `/gsap`.
 - **Official GreenSock Skills (`gsap-official-skills` - 8 Skills)**:
@@ -131,7 +131,7 @@ Integrasi resmi animasi GreenSock dan arsitektur penghubung ke visual Three.js:
   - `gsap-scrolltrigger-storytelling`: Storytelling produk sticky bertahap dan progressive UI reveals.
   - `build-awwwards-quality-sites`: Panduan koreografi visual standar Awwwards Site of the Day.
 
-### 5. 🎭 Motion Design & Choreography Suite (`skills/motion/`) - *4 Skills*
+### 5. 🎭 Motion Design & Choreography Suite (`skills/motion/`) - *5 Skill files*
 Fondasi estetika, prinsip gerak universal, dan tata kelola ritme animasi web:
 - **`motion`** *(Master Slash)*: Pemicu cepat desain gerak via `/motion`.
 - **`motion-design`** *(LottieFiles Universal)*: Prinsip animasi Disney yang diadaptasi untuk antarmuka web (antisipasi, overshoot, follow-through), durasi mikro-interaksi (100–300ms vs scene 800ms+), larangan linear easing untuk pergerakan spasial, dan arketipe kepribadian gerak (*Playful*, *Premium*, *Corporate*, *Energetic*).
@@ -202,14 +202,23 @@ Jalankan perintah berikut di PowerShell:
 .\restore.ps1
 ```
 
-Script akan otomatis:
-1. Menyalin seluruh aset ke `~/.gemini/` dan `~/.agents/skills/`.
-2. Menghubungkan seluruh junction ke `~/.gemini/config/skills/`.
-3. Memperbarui file konfigurasi `~/.gemini/config/skills.json`.
+Sebelum memasang, jalankan `python scripts/validate_repo.py` untuk pemeriksaan statis. Restore mengubah profil pengguna; tinjau `restore.ps1` dan gunakan `-WhatIf` untuk pratinjau. Script akan:
+1. Menyalin bundle ke `~/.gemini/` dan `~/.agents/skills/`; berkas skill diperbarui dari repositori.
+2. Membuat junction dengan nama deterministik; konflik dilaporkan dan tidak dilewati diam-diam.
+3. Menggabungkan path portable ke `~/.gemini/config/skills.json`, mencadangkan konfigurasi sebelumnya, dan membiarkan konfigurasi MCP pengguna tetap utuh.
 
 ---
 
+## Release and maintenance checks
+
+- The current inventory counts every `SKILL.md` file, including files in hidden source folders. Run `python scripts/validate_repo.py` before publishing; it checks inventory accuracy, required skill metadata, duplicate skill IDs, portable configuration paths, and JSON validity.
+- GitHub Actions validates the repository, parses the Windows restore script, and creates a `-WhatIf` restore plan.
+- Restore changes the current user profile. Review `restore.ps1` first and use `-WhatIf` for a preview; perform a real restore only on a clean or backed-up profile.
+- This repository bundles material from multiple upstream projects and has no single repository-wide license. Review the license and attribution terms for each bundle before redistributing the collection.
+- These checks validate packaging metadata and restore behavior. They do not certify the technical accuracy, security, accessibility, or freshness of all 241 skill files.
+
 ## 🏷️ Release History
+- **v1.7.2**: Pembaruan Enterprise Installer & Verifikasi Repositori: restrukturisasi `restore.ps1` dengan kompatibilitas penuh Windows PowerShell 5.1 dan PowerShell 7+, penanganan deterministik nama tautan skill ganda (`suite--name`), pencadangan otomatis `skills.json.bak`, token path portabel `${USER_HOME}`, proteksi utuh `mcp_config.json`, skrip validasi repositori (`scripts/validate_repo.py`), integrasi CI GitHub Actions, serta sinkronisasi inventaris 241 skills.
 - **v1.7.1**: Penyempurnaan **WebBuilder Suite**: penambahan 5 Preset Arketipe Siap Pakai (`government`, `tourism`, `saas`, `portfolio`, `ecommerce`), dukungan generator Multi-Page terhubung (`index.html`, `about.html`, `services.html`, `contact.html`), mode wizard terminal interaktif (`scaffold_web.py -i`), pustaka template komponen siap pakai (`references/component_snippets.md`), dan skrip audit otomatis kualitas web (`scripts/audit_site.py`).
 - **v1.7.0**: Penambahan **WebBuilder Suite** (`skills/web-builder`, master slash `/web-builder`). Framework pembuatan website otomatis modern berbasis metode dialog percakapan terarah (sistem ⇄ pengguna), eksplorasi niche & persona, 3 rekomendasi nama & tagline kreatif AI / input kustom pengguna, generator logo SVG & favicon suite otomatis, matriks 7 tipe tampilan (Single-Page, Multi-Page, Responsive, Card-Based Bento Grid, Magazine, Fullscreen Immersive, Dashboard), arsitektur 4 pilihan database (NoSQL, SQLite, MySQL, PostgreSQL, Static), master katalog 55 fitur & integrasi industri terkelompok dalam 6 klaster cerdas, serta script CLI generator `scaffold_web.py`. Total **248 skills** terpasang global.
 - **v1.6.1**: Penambahan **Master Slash Commands Hub** (`/security`, `/image-3d`, `/threejs`, `/gsap`, `/motion`, `/ui-ux`) dengan integrasi tooltip interaktif, panduan pemanggilan cepat slash `/`, dan resep kolaborasi lintas suite di README. Total **247 skills** terpasang global.

@@ -1,164 +1,202 @@
-<#
-.SYNOPSIS
-    Antigravity AI Skills & Configuration Restore Script
-.DESCRIPTION
-    Script ini memulihkan seluruh skills dan konfigurasi global Antigravity
-    ke direktori ~/.gemini/config/ dan ~/.agents/skills/
-#>
+[CmdletBinding(SupportsShouldProcess = $true)]
+param()
 
-$ErrorActionPreference = "Stop"
-
-Write-Host "==========================================" -ForegroundColor Cyan
-Write-Host "  Antigravity Skills & Config Restore" -ForegroundColor Cyan
-Write-Host "==========================================" -ForegroundColor Cyan
-
-$userHome = [System.Environment]::GetFolderPath("UserProfile")
-$geminiDir = Join-Path $userHome ".gemini"
-$configDir = Join-Path $geminiDir "config"
-$skillsDir = Join-Path $configDir "skills"
-$agentsSkillsDir = Join-Path $userHome ".agents\skills"
+$ErrorActionPreference = 'Stop'
+$userHome = [System.Environment]::GetFolderPath('UserProfile')
+$geminiDir = Join-Path $userHome '.gemini'
+$configDir = Join-Path $geminiDir 'config'
+$skillsDir = Join-Path $configDir 'skills'
+$agentsSkillsDir = Join-Path $userHome '.agents\skills'
 $scriptRoot = $PSScriptRoot
 
-# 1. Pastikan folder tujuan ada
-Write-Host "`n[1/4] Membuat direktori tujuan..." -ForegroundColor Yellow
-New-Item -ItemType Directory -Force -Path $skillsDir | Out-Null
-New-Item -ItemType Directory -Force -Path $agentsSkillsDir | Out-Null
-
-# 2. Pulihkan Konfigurasi
-Write-Host "[2/4] Memulihkan file konfigurasi Antigravity..." -ForegroundColor Yellow
-if (Test-Path "$scriptRoot\.gemini-config\skills.json") {
-    Copy-Item "$scriptRoot\.gemini-config\skills.json" "$configDir\skills.json" -Force
-}
-if (Test-Path "$scriptRoot\.gemini-config\mcp_config.json") {
-    Copy-Item "$scriptRoot\.gemini-config\mcp_config.json" "$configDir\mcp_config.json" -Force
+function Ensure-Directory {
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    param([string]$Path)
+    if (-not (Test-Path -LiteralPath $Path)) {
+        if ($PSCmdlet.ShouldProcess($Path, 'Create directory')) {
+            New-Item -ItemType Directory -Path $Path -Force | Out-Null
+        }
+    }
 }
 
-# 3. Pulihkan Skills ke ~/.agents/skills/ dan ~/.gemini/
-Write-Host "[3/4] Menyalin aset skills..." -ForegroundColor Yellow
-# UI UX Pro Max & bundle skills
-$coreSkills = @("ui-ux-pro-max", "brand", "banner-design", "design", "design-system", "slides", "ui-styling", "web-builder")
+Write-Host 'Antigravity skills restore' -ForegroundColor Cyan
+Write-Host "Repository: $scriptRoot"
+Write-Host "User profile: $userHome"
+
+$coreSkills = @('ui-ux-pro-max', 'brand', 'banner-design', 'design', 'design-system', 'slides', 'ui-styling', 'web-builder')
+$copyMappings = @()
 foreach ($skill in $coreSkills) {
-    $src = Join-Path "$scriptRoot\skills" $skill
-    if (Test-Path $src) {
-        Copy-Item -Recurse -Force $src $agentsSkillsDir
+    $copyMappings += [pscustomobject]@{
+        Source = Join-Path (Join-Path $scriptRoot 'skills') $skill
+        Destination = $agentsSkillsDir
+        ContentsOnly = $false
+    }
+}
+$copyMappings += @(
+    [pscustomobject]@{ Source = "$scriptRoot\skills\designer-skills"; Destination = "$geminiDir\designer-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\taste-skill"; Destination = "$geminiDir\taste-skill\skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\codeigniter4\ci4-app-api-skills"; Destination = "$geminiDir\ci4-app-api-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\codeigniter4\codeigniter-skills"; Destination = "$geminiDir\codeigniter-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\vue-ecosystem\vuejs-ai-skills"; Destination = "$geminiDir\vuejs-ai-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\vue-ecosystem\nuxt-skills"; Destination = "$geminiDir\nuxt-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\security\claude-code-owasp"; Destination = "$geminiDir\claude-code-owasp"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\security\security-audit-skill"; Destination = "$geminiDir\security-audit-skill"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\awesome-agent-skills"; Destination = "$geminiDir\awesome-agent-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\threejs\threejs-core-skills"; Destination = "$geminiDir\threejs-core-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\threejs\threejs-webgpu-skills"; Destination = "$geminiDir\threejs-webgpu-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\threejs\threejs-interactive-skills"; Destination = "$geminiDir\threejs-interactive-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\gsap\gsap-official-skills"; Destination = "$geminiDir\gsap-official-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\gsap\gsap-creative-skills"; Destination = "$geminiDir\gsap-creative-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\motion"; Destination = "$geminiDir\motion-design-skills"; ContentsOnly = $true },
+    [pscustomobject]@{ Source = "$scriptRoot\skills\image-to-3d"; Destination = "$geminiDir\image-to-3d-skills"; ContentsOnly = $true }
+)
+
+$missingSources = @($copyMappings | Where-Object { -not (Test-Path -LiteralPath $_.Source) })
+if ($missingSources.Count -gt 0) {
+    throw "Restore package is incomplete; required bundle missing: $($missingSources.Source -join ', ')"
+}
+$templatePath = Join-Path $scriptRoot '.gemini-config\skills.json'
+try {
+    $template = Get-Content -LiteralPath $templatePath -Raw | ConvertFrom-Json
+    if (-not ($template.PSObject.Properties.Name -contains 'entries') -or @($template.entries).Count -eq 0) {
+        throw 'entries array is missing or empty'
+    }
+} catch {
+    throw "Restore package has an invalid skills config template: $($_.Exception.Message)"
+}
+$installedConfigPath = Join-Path $configDir 'skills.json'
+if (Test-Path -LiteralPath $installedConfigPath) {
+    try {
+        $preflightConfig = Get-Content -LiteralPath $installedConfigPath -Raw | ConvertFrom-Json
+        if (-not ($preflightConfig.PSObject.Properties.Name -contains 'entries')) { throw 'entries array is missing' }
+    } catch {
+        throw "Existing skills config is invalid; no files were installed: $installedConfigPath. $($_.Exception.Message)"
     }
 }
 
-# Designer Skills suite
-$designerDest = Join-Path $geminiDir "designer-skills"
-if (Test-Path "$scriptRoot\skills\designer-skills") {
-    New-Item -ItemType Directory -Force -Path $designerDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\designer-skills\*" $designerDest
+Ensure-Directory $agentsSkillsDir
+Ensure-Directory $geminiDir
+Ensure-Directory $configDir
+Ensure-Directory $skillsDir
+foreach ($mapping in $copyMappings) {
+    if (-not (Test-Path -LiteralPath $mapping.Source)) {
+        throw "Required bundle disappeared during restore: $($mapping.Source)"
+    }
+    Ensure-Directory $mapping.Destination
+    if ($mapping.ContentsOnly) {
+        $sourcePath = Join-Path $mapping.Source '*'
+    } else {
+        $sourcePath = $mapping.Source
+    }
+    if ($PSCmdlet.ShouldProcess($mapping.Destination, "Copy bundle from $($mapping.Source)")) {
+        Copy-Item -Path $sourcePath -Destination $mapping.Destination -Recurse -Force
+    }
 }
 
-# Taste Skill suite
-$tasteDest = Join-Path $geminiDir "taste-skill\skills"
-if (Test-Path "$scriptRoot\skills\taste-skill") {
-    New-Item -ItemType Directory -Force -Path $tasteDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\taste-skill\*" $tasteDest
-}
-
-# CodeIgniter 4 Skills suite
-if (Test-Path "$scriptRoot\skills\codeigniter4\ci4-app-api-skills") {
-    $ci4AppDest = Join-Path $geminiDir "ci4-app-api-skills"
-    New-Item -ItemType Directory -Force -Path $ci4AppDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\codeigniter4\ci4-app-api-skills\*" $ci4AppDest
-}
-if (Test-Path "$scriptRoot\skills\codeigniter4\codeigniter-skills") {
-    $ci4CoreDest = Join-Path $geminiDir "codeigniter-skills"
-    New-Item -ItemType Directory -Force -Path $ci4CoreDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\codeigniter4\codeigniter-skills\*" $ci4CoreDest
-}
-
-# Vue 3 & Nuxt Ecosystem Skills suite
-if (Test-Path "$scriptRoot\skills\vue-ecosystem\vuejs-ai-skills") {
-    $vueDest = Join-Path $geminiDir "vuejs-ai-skills"
-    New-Item -ItemType Directory -Force -Path $vueDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\vue-ecosystem\vuejs-ai-skills\*" $vueDest
-}
-if (Test-Path "$scriptRoot\skills\vue-ecosystem\nuxt-skills") {
-    $nuxtDest = Join-Path $geminiDir "nuxt-skills"
-    New-Item -ItemType Directory -Force -Path $nuxtDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\vue-ecosystem\nuxt-skills\*" $nuxtDest
-}
-
-# Security Audit & Bug Hunter Suite
-if (Test-Path "$scriptRoot\skills\security\claude-code-owasp") {
-    $owaspDest = Join-Path $geminiDir "claude-code-owasp"
-    New-Item -ItemType Directory -Force -Path $owaspDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\security\claude-code-owasp\*" $owaspDest
-}
-if (Test-Path "$scriptRoot\skills\security\security-audit-skill") {
-    $auditDest = Join-Path $geminiDir "security-audit-skill"
-    New-Item -ItemType Directory -Force -Path $auditDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\security\security-audit-skill\*" $auditDest
-}
-
-# Awesome Agent Skills Catalog
-if (Test-Path "$scriptRoot\skills\awesome-agent-skills") {
-    $awesomeDest = Join-Path $geminiDir "awesome-agent-skills"
-    New-Item -ItemType Directory -Force -Path $awesomeDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\awesome-agent-skills\*" $awesomeDest
-}
-
-# Three.js 3D Graphics Suite (WebGL r186, WebGPU/TSL, Physics & WebXR)
-if (Test-Path "$scriptRoot\skills\threejs\threejs-core-skills") {
-    $threeCoreDest = Join-Path $geminiDir "threejs-core-skills"
-    New-Item -ItemType Directory -Force -Path $threeCoreDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-core-skills\*" $threeCoreDest
-}
-if (Test-Path "$scriptRoot\skills\threejs\threejs-webgpu-skills") {
-    $threeGpuDest = Join-Path $geminiDir "threejs-webgpu-skills"
-    New-Item -ItemType Directory -Force -Path $threeGpuDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-webgpu-skills\*" $threeGpuDest
-}
-if (Test-Path "$scriptRoot\skills\threejs\threejs-interactive-skills") {
-    $threeInteractDest = Join-Path $geminiDir "threejs-interactive-skills"
-    New-Item -ItemType Directory -Force -Path $threeInteractDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\threejs\threejs-interactive-skills\*" $threeInteractDest
-}
-
-# GSAP Animation & Creative 3D Web Suite (Official GreenSock + MengTo + Three.js Integration)
-if (Test-Path "$scriptRoot\skills\gsap\gsap-official-skills") {
-    $gsapOfficialDest = Join-Path $geminiDir "gsap-official-skills"
-    New-Item -ItemType Directory -Force -Path $gsapOfficialDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\gsap\gsap-official-skills\*" $gsapOfficialDest
-}
-if (Test-Path "$scriptRoot\skills\gsap\gsap-creative-skills") {
-    $gsapCreativeDest = Join-Path $geminiDir "gsap-creative-skills"
-    New-Item -ItemType Directory -Force -Path $gsapCreativeDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\gsap\gsap-creative-skills\*" $gsapCreativeDest
-}
-
-# Motion Design & Choreography Suite (LottieFiles Universal Principles + FrankX Motion Directors & Auditors)
-if (Test-Path "$scriptRoot\skills\motion") {
-    $motionDest = Join-Path $geminiDir "motion-design-skills"
-    New-Item -ItemType Directory -Force -Path $motionDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\motion\*" $motionDest
-}
-
-# 3D Web Image & PBR Suite (image-to-3d-web, fal-3d)
-if (Test-Path "$scriptRoot\skills\image-to-3d") {
-    $image3dDest = Join-Path $geminiDir "image-to-3d-skills"
-    New-Item -ItemType Directory -Force -Path $image3dDest | Out-Null
-    Copy-Item -Recurse -Force "$scriptRoot\skills\image-to-3d\*" $image3dDest
-}
-
-# 4. Buat Directory Junctions di ~/.gemini/config/skills/
-Write-Host "[4/4] Mendaftarkan Junctions di global skills directory..." -ForegroundColor Yellow
-$allSkillMds = Get-ChildItem -Recurse $geminiDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory
-$allAgentMds = Get-ChildItem -Recurse $agentsSkillsDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory
-
-$totalLinked = 0
-foreach ($dir in (@($allSkillMds) + @($allAgentMds))) {
-    $link = Join-Path $skillsDir $dir.Name
-    if (-not (Test-Path $link)) {
+# Merge generated skill search paths with existing user paths, preserving unrelated entries.
+$templatePath = Join-Path $scriptRoot '.gemini-config\skills.json'
+if (Test-Path -LiteralPath $templatePath) {
+    $template = Get-Content -LiteralPath $templatePath -Raw | ConvertFrom-Json
+    $templatePaths = @($template.entries | ForEach-Object {
+        if (-not $_.path) { throw 'Invalid skills.json template: each entry needs a path.' }
+        $_.path.Replace('${USER_HOME}', ($userHome -replace '\\', '/'))
+    })
+    $installedConfigPath = Join-Path $configDir 'skills.json'
+    $existingPaths = @()
+    if (Test-Path -LiteralPath $installedConfigPath) {
         try {
-            New-Item -ItemType Junction -Path $link -Target $dir.FullName | Out-Null
-            $totalLinked++
-        } catch {}
+            $existingConfig = Get-Content -LiteralPath $installedConfigPath -Raw | ConvertFrom-Json
+            if (-not ($existingConfig.PSObject.Properties.Name -contains 'entries')) { throw 'entries array is missing' }
+            $existingPaths = @($existingConfig.entries | Where-Object { $_.path } | ForEach-Object { [string]$_.path })
+        } catch {
+            throw "Existing skills config is invalid; preserved without changes: $installedConfigPath. $($_.Exception.Message)"
+        }
+    }
+    $mergedPaths = @($existingPaths + $templatePaths | Select-Object -Unique)
+    $configProperties = [ordered]@{}
+    if ($existingConfig) {
+        foreach ($property in $existingConfig.PSObject.Properties) {
+            if ($property.Name -ne 'entries') { $configProperties[$property.Name] = $property.Value }
+        }
+    }
+    $configProperties['entries'] = @($mergedPaths | ForEach-Object { [pscustomobject]@{ path = $_ } })
+    $newConfig = [pscustomobject]$configProperties
+    if ($PSCmdlet.ShouldProcess($installedConfigPath, 'Back up existing config and merge skill paths')) {
+        if (Test-Path -LiteralPath $installedConfigPath) {
+            $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+            Copy-Item -LiteralPath $installedConfigPath -Destination "$installedConfigPath.$stamp.bak"
+        }
+        $temporaryConfig = "$installedConfigPath.tmp"
+        $newConfig | ConvertTo-Json -Depth 10 | Set-Content -LiteralPath $temporaryConfig -Encoding utf8
+        Move-Item -LiteralPath $temporaryConfig -Destination $installedConfigPath -Force
     }
 }
 
-Write-Host "`n✅ Pemulihan selesai! $totalLinked skills terhubung secara global ke Antigravity." -ForegroundColor Green
-Write-Host "Silakan restart Antigravity IDE atau jalankan sesi baru untuk memuat seluruh skill." -ForegroundColor Green
+# Create deterministic links. Duplicate skill folder names get a namespace prefix instead of silently hiding one.
+$skillDirs = @(
+    foreach ($mapping in $copyMappings) {
+        if (-not (Test-Path -LiteralPath $mapping.Source)) { continue }
+        $sourceRoot = (Resolve-Path -LiteralPath $mapping.Source).Path
+        $destinationRoot = $mapping.Destination
+        if (-not $mapping.ContentsOnly) {
+            $destinationRoot = Join-Path $destinationRoot (Split-Path $mapping.Source -Leaf)
+        }
+        Get-ChildItem -LiteralPath $sourceRoot -Filter 'SKILL.md' -File -Recurse -Force -ErrorAction Stop | ForEach-Object {
+            $dirPath = $_.Directory.FullName
+            $relative = if ($dirPath.Length -gt $sourceRoot.Length) {
+                $dirPath.Substring($sourceRoot.Length).TrimStart('\', '/')
+            } else {
+                ''
+            }
+            $targetDirectory = if ([string]::IsNullOrWhiteSpace($relative)) { $destinationRoot } else { Join-Path $destinationRoot $relative }
+            [pscustomobject]@{ Name = $_.Directory.Name; FullName = $targetDirectory }
+        }
+    }
+) | Sort-Object FullName -Unique
+$groups = $skillDirs | Group-Object Name
+$created = 0
+$alreadyCorrect = 0
+$conflicts = [System.Collections.Generic.List[string]]::new()
+foreach ($group in $groups) {
+    foreach ($directory in ($group.Group | Sort-Object FullName)) {
+        $linkName = $directory.Name
+        if ($group.Count -gt 1) {
+            $parentPath = Split-Path $directory.FullName -Parent
+            $parentName = Split-Path $parentPath -Leaf
+            if ($parentName -eq 'skills') {
+                $grandParent = Split-Path $parentPath -Parent
+                if ($grandParent) {
+                    $parentName = Split-Path $grandParent -Leaf
+                }
+            }
+            $linkName = "$parentName--$($directory.Name)"
+        }
+        $linkPath = Join-Path $skillsDir $linkName
+        if (Test-Path -LiteralPath $linkPath) {
+            $existing = Get-Item -LiteralPath $linkPath -Force
+            $target = if ($existing.Target) { [string]$existing.Target } else { '' }
+            if ($target -and [System.IO.Path]::GetFullPath($target) -eq [System.IO.Path]::GetFullPath($directory.FullName)) {
+                $alreadyCorrect++
+            } else {
+                $conflicts.Add("$linkName -> $linkPath (existing entry points elsewhere or is not a junction)")
+            }
+            continue
+        }
+        if ($PSCmdlet.ShouldProcess($linkPath, "Create skill junction to $($directory.FullName)")) {
+            try {
+                New-Item -ItemType Junction -Path $linkPath -Target $directory.FullName -ErrorAction Stop | Out-Null
+                $created++
+            } catch {
+                $conflicts.Add("$linkName -> $linkPath ($($_.Exception.Message))")
+            }
+        }
+    }
+}
+
+if ($conflicts.Count -gt 0) {
+    Write-Warning "Restore finished with $($conflicts.Count) unresolved link conflict(s):"
+    $conflicts | ForEach-Object { Write-Warning "  $_" }
+    throw 'Restore is incomplete. Resolve the reported conflicts and run restore.ps1 again.'
+}
+Write-Host "Restore complete: $created junction(s) created; $alreadyCorrect already correct; $($skillDirs.Count) skills discovered." -ForegroundColor Green
+Write-Host 'Existing MCP configuration was left untouched.'

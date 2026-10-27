@@ -1,6 +1,6 @@
 # 🧩 WebBuilder: Component Snippets Library
 
-Pustaka snippet komponen antarmuka siap pakai (*Zero-Slop Production Snippets*) untuk WebBuilder Suite. Seluruh snippet dirancang menggunakan **CSS Design Tokens**, semantik HTML5, aksesibel (WCAG AA), dan tanpa ketergantungan library luar yang berlebihan (*dependency-free* atau minimal).
+Pustaka contoh snippet komponen antarmuka untuk diadaptasi per proyek untuk WebBuilder Suite. Seluruh snippet dirancang menggunakan **CSS Design Tokens**, semantik HTML5, aksesibel (WCAG AA), dan tanpa ketergantungan library luar yang berlebihan (*dependency-free* atau minimal).
 
 ---
 
@@ -328,7 +328,7 @@ function openModal(title, content) {
   const modal = document.getElementById('siteModal');
   if (!modal) return;
   document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalBody').innerHTML = content;
+  document.getElementById('modalBody').textContent = content;
   modal.classList.add('active');
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';

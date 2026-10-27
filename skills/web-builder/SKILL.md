@@ -28,6 +28,7 @@ Prioritaskan hal berikut, sesuai relevansi:
 
 - Tujuan website dan tindakan utama yang diharapkan dari pengunjung.
 - Audiens dan konten/halaman penting.
+- Apakah situs statis/pasif atau dinamis (data berubah, akun, formulir yang diproses, atau integrasi backend). Tanyakan kebutuhan dashboard admin secara terpisah; situs dinamis tidak otomatis memerlukan dashboard.
 - Identitas brand, logo/aset yang tersedia, dan gaya visual.
 - Kebutuhan fungsi: autentikasi, data, formulir, pembayaran, pencarian, CMS, dan sebagainya.
 - Stack, database, batasan hosting, atau preferensi teknologi.
@@ -36,7 +37,7 @@ Jika detail kecil belum diketahui, nyatakan asumsi yang masuk akal dan lanjutkan
 
 ## Blueprint dan implementasi
 
-Untuk proyek baru atau perubahan besar, rangkum secara ringkas sebelum implementasi: tujuan, audiens, halaman/section, arah visual, stack yang dipilih atau diasumsikan, fitur lingkup kerja, serta asumsi/batasan. Jangan tampilkan seluruh katalog sebagai formulir. Blueprint berfungsi menyelaraskan lingkup; lanjutkan tanpa jeda ketika pengguna sudah memberi mandat jelas.
+Untuk proyek baru atau perubahan besar, rangkum secara ringkas sebelum implementasi: tujuan, audiens, halaman/section, arah visual, mode situs statis/dinamis, kebutuhan dashboard admin (ya/tidak/tidak relevan), stack yang dipilih atau diasumsikan, fitur lingkup kerja, serta asumsi/batasan. Jangan tampilkan seluruh katalog sebagai formulir. Blueprint berfungsi menyelaraskan lingkup; lanjutkan tanpa jeda ketika pengguna sudah memberi mandat jelas.
 
 Implementasikan dalam irisan yang bisa ditinjau:
 
@@ -53,11 +54,13 @@ Scaffolder opsional dan ditujukan untuk membuat starter statis baru, bukan mengi
 - Temukan lokasi folder skill dari `SKILL.md` yang sedang digunakan. Jalankan `scripts/scaffold_web.py --help` menggunakan Python 3 sebelum memilih opsi. Gunakan path absolut hasil inspeksi atau working directory yang terverifikasi; jangan gunakan placeholder path.
 - Berikan `--output` ke lokasi proyek yang dimaksud pengguna. Jangan menulis output ke dalam direktori instalasi skill.
 - Periksa target output terlebih dahulu. Script membuat direktori jika belum ada dan menulis/mengganti `index.html`, `style.css`, `main.js`, `blueprint.json`, serta SVG logo/favicon di `assets/icons/`; jangan arahkan ke direktori berisi berkas penting.
-- Scaffold menerima pilihan nama, tagline, tipe tampilan, tema, database, dan nomor fitur. Pilihan database dan fitur dicatat sebagai metadata/teks scaffold; script tidak membuat database, backend, atau implementasi lengkap untuk semua fitur.
+- Scaffold menerima pilihan nama, tagline, tipe tampilan, tema, database, nomor fitur, mode situs (`--site-mode static|dynamic`), dan rencana dashboard admin (`--dashboard yes|no`). Nilai mode/dashboard dan database/fitur adalah metadata rencana; scaffold tidak membuat database, backend, atau dashboard admin.
+- Bedakan `--display dashboard` (archetype tata letak bergaya aplikasi) dari `--dashboard yes` (rencana panel administrasi). Dashboard admin memerlukan situs dinamis; dynamic site tetap bisa tidak memiliki dashboard.
 - Script menghasilkan SVG logo dan `favicon.svg`; ia tidak menghasilkan fallback PNG/ICO atau apple-touch icon terpisah. Bila pengguna memerlukan aset tersebut, buat/konversi secara eksplisit dan pastikan hasilnya benar-benar tersedia.
 - Script mendukung preset, mode interaktif, dan multi-page; periksa `--help` agar memakai opsi yang tersedia saat ini. Target output dapat berisi berkas yang akan ditimpa.
 - Preset seperti government, tourism, SaaS, portfolio, ecommerce, business, education, community, dan events adalah titik awal. Jangan menganggap preset government sebagai default atau membawa bahasa, jam operasional, lokasi, aturan, maupun klaim domain tertentu ke preset lain. Sesuaikan semua halaman dan CTA dengan konteks pengguna.
 - Setelah scaffold, inspeksi berkas keluaran, hapus atau ganti konten contoh yang tidak relevan, dan sesuaikan dengan brief. Jangan berhenti pada template jika pengguna meminta website yang berfungsi penuh.
+- Jangan menyebut hasil scaffold atau skor auditor sebagai siap produksi. Status produksi baru dapat dinilai setelah konten, integrasi nyata, konfigurasi rahasia, privasi/hukum, deployment, dan pemeriksaan di lingkungan target ditangani sesuai kebutuhan proyek.
 
 ## Referensi
 

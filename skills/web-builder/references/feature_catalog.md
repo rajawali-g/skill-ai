@@ -24,7 +24,7 @@ Katalog teknis lengkap 55 fitur dan integrasi standar industri yang dapat diraki
   function showToast(msg, type = 'success') {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type} animate-slide-in`;
-    toast.innerHTML = `<span class="toast-icon">✓</span><span>${msg}</span>`;
+    toast.textContent = String(msg);
     document.body.appendChild(toast);
     setTimeout(() => toast.classList.add('fade-out'), 3500);
     setTimeout(() => toast.remove(), 4000);

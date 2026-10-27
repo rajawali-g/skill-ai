@@ -15,3 +15,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+# Local credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+*.local.*
+.claude/settings.local.json
+.codex/config.local.toml

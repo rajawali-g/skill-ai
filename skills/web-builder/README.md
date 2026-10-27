@@ -141,6 +141,15 @@ Sistem tidak membiarkan pengguna bingung meraba-raba fitur apa saja yang mungkin
 
 ---
 
+### Mode Situs dan Kebutuhan Dashboard
+
+- **Statis / pasif**: konten utama jarang berubah dan halaman dapat disajikan tanpa backend khusus.
+- **Dinamis / data-driven**: konten atau data berubah, atau pengguna mengirim data, masuk akun, dan memakai integrasi backend/API.
+- **Dashboard admin**: panel internal untuk mengelola konten, pengguna, transaksi, atau data. Ini keputusan terpisah: situs dinamis tidak selalu membutuhkan dashboard, sedangkan dashboard admin memerlukan autentikasi dan backend yang sesuai.
+- **Dashboard / App-Like** pada pilihan tipe tampilan berarti gaya antarmuka aplikasi; itu tidak otomatis berarti panel admin.
+
+Scaffolder dapat mencatat pilihan tersebut lewat `--site-mode static|dynamic` dan `--dashboard yes|no`. Nilainya hanya rencana dalam blueprint; scaffold tidak membangun backend atau dashboard admin.
+
 ## 📋 4. Dokumen Standar: The Project Blueprint
 
 Sebelum kode dieksekusi, sistem wajib memaparkan **Blueprint Singkat** dalam format markdown yang merangkum hasil dialog:
@@ -152,6 +161,8 @@ Sebelum kode dieksekusi, sistem wajib memaparkan **Blueprint Singkat** dalam for
 - **Logo & Favicon**: Logo SVG dan favicon SVG sederhana dari scaffolder
 - **Niche & Tujuan**: Profil Interaktif Pariwisata Minahasa Selatan
 - **Tipe Tampilan**: One-Page Scrollytelling (Alur linear berbabak dengan sticky anchor)
+- **Mode Situs**: Dinamis (konten/data dapat berubah; kebutuhan backend ditentukan terpisah)
+- **Dashboard Admin**: Tidak direncanakan untuk contoh ini
 - **Database**: PostgreSQL (Supabase cloud / lokal) - Tabel: `destinations`, `visitor_inquiries`, `events`
 - **Fitur yang direncanakan (belum tentu diimplementasikan)**: 
   - #1 Notifikasi & Alert Modern

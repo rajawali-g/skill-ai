@@ -9,6 +9,7 @@ Panduan naskah wawancara percakapan terstruktur (*Conversational Script*) untuk 
 1. **Maksimal 3-4 Pertanyaan per Putaran**: Jangan membombardir pengguna dengan daftar pertanyaan panjang.
 2. **Selalu Berikan Rekomendasi Konkret**: Pengguna seringkali tidak tahu nama font atau kode warna. Tawarkan pilihan terkurasi (A, B, C) dengan visual preview verbal.
 3. **Blueprint Proporsional**: Untuk proyek baru/besar, rangkum blueprint. Jangan meminta persetujuan ulang jika pengguna sudah memberi mandat jelas; langsung kerjakan perubahan kecil.
+4. **Pisahkan Mode Situs dan Dashboard**: Tanyakan apakah situs statis/pasif atau dinamis. Tanyakan dashboard admin secara terpisah; situs dinamis tidak selalu perlu dashboard.
 
 ---
 
@@ -22,10 +23,11 @@ Kita akan merancang website yang memukau, sesuai kebutuhan, cepat, dan mudah dik
 Mari mulai dari fondasi utama:
 1. Apa jenis / niche website yang ingin kita buat? (Contoh: Profil Daerah/Pariwisata, SaaS Dashboard, Portofolio Kreatif, Profil Perusahaan, atau Toko Online?)
 2. Siapa audiens atau target pengunjung utama website ini? (Contoh: Turis lokal & mancanegara, calon investor, pembeli produk, atau masyarakat umum?)
+3. Apakah situs cukup statis, atau perlu data yang berubah, akun pengguna, formulir yang diproses, atau integrasi backend? Jika dinamis, apakah perlu dashboard admin untuk mengelola konten atau data?
 
 💡 Alternatif Cepat (Preset Siap Pakai):
 Jika ingin langsung memulai dengan arketipe teruji, Anda juga dapat menyebutkan preset berikut:
-- "Pakai preset business, government, education, atau preset lain yang paling sesuai (gunakan preset pemerintah hanya bila memang dibutuhkan)
+- "Pakai preset business atau preset lain yang paling sesuai" (gunakan preset government hanya bila memang dibutuhkan)
 - "Pakai preset tourism" (Pariwisata & Budaya)
 - "Pakai preset saas" (SaaS & Produk Digital)
 - "Pakai preset portfolio" (Portofolio Kreatif)
@@ -78,6 +80,8 @@ Untuk arsitektur tata letak, tipe tampilan mana yang paling sesuai dengan kebutu
 6. Fullscreen / Immersive: Visual layar penuh dengan 3D canvas atau hero sinematik yang memaksimalkan dampak visual pertama.
 7. Dashboard / App-Like: Antarmuka menyerupai aplikasi web dengan sidebar navigasi tetap dan panel analitik/data interaktif.
 ```
+
+Catatan: pilihan layout Dashboard/App-Like mengatur bentuk antarmuka. Itu berbeda dari dashboard admin. Catat mode statis/dinamis dan kebutuhan dashboard admin sebagai dua keputusan terpisah.
 
 ---
 
@@ -179,6 +183,8 @@ Untuk proyek baru atau perubahan besar, rangkum **Project Blueprint** dari infor
 - **Tagline**: "[Tagline Pilihan]"
 - **Logo & Favicon**: [Milik Sendiri / Digenerate Sistem SVG]
 - **Niche & Persona**: [Niche] untuk [Audiens]
+- **Mode Situs**: [Statis/pasif atau dinamis/data-driven]
+- **Dashboard Admin**: [Ya/tidak/tidak relevan; jika ya, siapa yang menggunakannya?]
 - **Tipe Tampilan**: [Single-Page / Bento Grid / Multi-Page / dll]
 - **Database**: [PostgreSQL / SQLite / MySQL / NoSQL / Static]
 - **Fitur Terpilih**: [#1, #2, #4, #8, #16, ...]
