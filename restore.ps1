@@ -36,7 +36,7 @@ if (Test-Path "$scriptRoot\.gemini-config\mcp_config.json") {
 # 3. Pulihkan Skills ke ~/.agents/skills/ dan ~/.gemini/
 Write-Host "[3/4] Menyalin aset skills..." -ForegroundColor Yellow
 # UI UX Pro Max & bundle skills
-$coreSkills = @("ui-ux-pro-max", "brand", "banner-design", "design", "design-system", "slides", "ui-styling")
+$coreSkills = @("ui-ux-pro-max", "brand", "banner-design", "design", "design-system", "slides", "ui-styling", "web-builder")
 foreach ($skill in $coreSkills) {
     $src = Join-Path "$scriptRoot\skills" $skill
     if (Test-Path $src) {

@@ -12,6 +12,7 @@ Di dalam chat Antigravity IDE, Anda dapat langsung memanggil keahlian khusus han
 
 | Slash Command | Tooltip / Keterangan Interaktif | Mengorkestrasi Sub-Skills |
 | :--- | :--- | :--- |
+| **`/web-builder`** | 🌐 **[WebBuilder Suite]** Pembuatan website otomatis modern berbasis dialog percakapan iteratif (sistem ⇄ pengguna). Dilengkapi eksplorasi niche & persona, 3 rekomendasi nama & deskripsi AI / input kustom, generator logo SVG & favicon suite, 7 tipe tampilan, pemilihan database (NoSQL, SQLite, MySQL, PostgreSQL, Static), dan orkestrasi 55 fitur & integrasi. | `web-builder`, kolaborasi `/ui-ux`, `/image-3d`, `/threejs`, `/gsap`, `/motion`, `/security`, `/ci4`, `/vue` |
 | **`/image-3d`** | 📸 **[3D Image & PBR Suite]** Pindai folder foto lokal, analisis peran 3D, kembangkan jadi tekstur PBR (Normal, Roughness, AO), seamless tiling, Power-of-Two GPU, dan konversi ke model 3D GLB via Trellis/Tripo. | `image-to-3d-web`, `fal-3d` |
 | **`/threejs`** | 🎮 **[Three.js & WebGPU Master]** Panduan lengkap grafis 3D web (r186), WebGPU TSL, tata pencahayaan IBL/HDR, material PBR, shader kustom, kamera, post-processing bloom, dan Rapier physics. | `threejs-core` (13 skills), `threejs-webgpu` (27 skills), `threejs-interactive` (3 skills) |
 | **`/gsap`** | ✨ **[GSAP Animation Master]** Animasi web GreenSock v3, ScrollTrigger scrollytelling, koordinasi timeline, smooth scroll Lenis, integrasi Three.js ticker, dan koreografi web kelas Awwwards. | `gsap-official` (8 skills), `gsap-creative` (5 skills) |
@@ -175,7 +176,18 @@ Koleksi 111 skills dan 9 plugin desain profesional dari Owl-Listener:
 - Katalog resmi dari **VoltAgent** yang merangkum **1.497+ Official Agent Skills** dari tim rekayasa terkemuka dunia (Vercel, Supabase, Cloudflare, Stripe, Anthropic, Sentry, Better Auth, GSAP, TestMu AI, dll.).
 - Terintegrasi sebagai skill lokal (`awesome-agent-skills`) sehingga Antigravity dapat mencari rekomendasi tools resmi kapan saja melalui file referensi `directory.md`.
 
-### 12. ⚙️ Global Configurations (`.gemini-config/`)
+### 12. 🌐 WebBuilder: Conversational Web Creation Framework (`skills/web-builder/`)
+Framework otomasi pembuatan website modern melalui dialog percakapan iteratif (*Conversational Co-Creation*) antara sistem AI (Lead Web Architect) dan pengguna (Product Owner):
+- **`web-builder`** *(Master Slash: `/web-builder`)*:
+  - **Siklus Hidup 5 Tahapan:** *Elicitation & Discovery* ➔ *Architecture & Blueprint* ➔ *Foundation & Tokens* ➔ *Progressive Assembly* ➔ *Conversational Refinement*.
+  - **Identitas & Persona Terarah:** Menggali niche, target persona, dan secara otomatis meracik **3 Alternatif Nama & Tagline/Deskripsi AI** atau menerima input kustom pengguna.
+  - **Generator Logo & Favicon Otomatis:** Mengakomodasi file logo milik pengguna atau membuat **Modern Vector SVG Logo** dan **Favicon Suite** murni yang tajam di semua DPI.
+  - **Matriks 7 Tipe Tampilan:** Mendukung layout *Single-Page Scrollytelling*, *Multi-Page*, *Responsive Design*, *Card-Based (Bento Grid)*, *Grid-Heavy Magazine*, *Fullscreen Immersive*, dan *Dashboard / App-Like*.
+  - **Arsitektur Database:** Opsi fleksibel untuk **NoSQL** (MongoDB/Firebase), **SQLite** (serverless lokal), **MySQL/MariaDB** (relasional CI4), **PostgreSQL** (enterprise/Supabase), atau **None / Static Web**.
+  - **Master Katalog 55 Fitur & Integrasi:** Orkestrasi terstruktur 55 kapabilitas standar industri (UI/UX, Visualisasi Data, Keamanan, CMS, AI Chatbot, PWA, DevOps) dalam 6 klaster cerdas.
+  - **Script Scaffolding CLI (`scripts/scaffold_web.py`):** Perakitan instan kode semantik HTML5, CSS Design Tokens HSL, dark/light theme switcher, dan JavaScript modular berstandar Awwwards bebas slop.
+
+### 13. ⚙️ Global Configurations (`.gemini-config/`)
 - `skills.json`: Pendaftaran seluruh path repositori ke Antigravity.
 - `mcp_config.json`: Konfigurasi Model Context Protocol.
 
@@ -197,6 +209,7 @@ Script akan otomatis:
 ---
 
 ## 🏷️ Release History
+- **v1.7.0**: Penambahan **WebBuilder Suite** (`skills/web-builder`, master slash `/web-builder`). Framework pembuatan website otomatis modern berbasis metode dialog percakapan terarah (sistem ⇄ pengguna), eksplorasi niche & persona, 3 rekomendasi nama & tagline kreatif AI / input kustom pengguna, generator logo SVG & favicon suite otomatis, matriks 7 tipe tampilan (Single-Page, Multi-Page, Responsive, Card-Based Bento Grid, Magazine, Fullscreen Immersive, Dashboard), arsitektur 4 pilihan database (NoSQL, SQLite, MySQL, PostgreSQL, Static), master katalog 55 fitur & integrasi industri terkelompok dalam 6 klaster cerdas, serta script CLI generator `scaffold_web.py`. Total **248 skills** terpasang global.
 - **v1.6.1**: Penambahan **Master Slash Commands Hub** (`/security`, `/image-3d`, `/threejs`, `/gsap`, `/motion`, `/ui-ux`) dengan integrasi tooltip interaktif, panduan pemanggilan cepat slash `/`, dan resep kolaborasi lintas suite di README. Total **247 skills** terpasang global.
 - **v1.6.0**: Penambahan **3D Web Image & PBR Suite** (`image-to-3d-web`, `fal-3d`). Kemampuan memindai folder foto lokal mana pun, menganalisis properti visual, dan mengembangkannya menjadi peta PBR lengkap (Normal, Roughness, AO, Displacement), tekstur seamless, Power-of-Two GPU optimization, dan generasi mesh 3D / Three.js code.
 - **v1.5.0**: Penambahan **Motion Design & Choreography Suite** (4 skills: LottieFiles Universal Animation Principles + FrankX Motion Director, Site Choreography, dan Web Motion Auditor). Melengkapi *The Trinity of Motion* (Motion Design + GSAP + Three.js). Total 239 skills terpasang global.
