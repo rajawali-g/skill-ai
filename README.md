@@ -97,7 +97,18 @@ Koleksi 111 skills dan 9 plugin desain profesional dari Owl-Listener:
 ### 8. 🤌 Taste Skill Suite (`skills/taste-skill/`)
 - Anti-slop frontend art direction yang didistilasi dari 247 situs kurasi Awwwards & One Page Love.
 
-### 9. ⚙️ Global Configurations (`.gemini-config/`)
+### 9. 📸 3D Web Image & PBR Suite (`skills/image-to-3d/`) - *2 Skills*
+Suite khusus untuk memproses dan mengembangkan foto 2D menjadi aset 3D Web fotorealistis:
+- **`image-to-3d-web`**:
+  - **Batch Inspection:** Memindai seluruh foto di folder yang ditentukan, mengklasifikasikan perannya (*surface texture*, *environment IBL*, *isolated prop*, *billboard 2.5D*), dan memverifikasi kepatuhan Power-of-Two (POT).
+  - **PBR Generator Engine (`scripts/pbr_generator.py`):** Otomatis membuat peta **Normal Map (+Y OpenGL Three.js)** via filter gradien Sobel, **Roughness Map**, **Ambient Occlusion (AO)**, dan **Displacement/Height Map**.
+  - **Seamless Tiling:** Mengubah foto biasa menjadi tekstur berulang tanpa sambungan (*tileable*) untuk lantai/dinding/terrain 3D.
+  - **GPU POT Resizer:** Mengubah ukuran foto ke 512, 1024, atau 2048 dengan kompresi WebP & PNG agar Three.js mipmapping tajam tanpa lag.
+  - **Three.js Code Generator:** Otomatis menghasilkan file `threejs_materials.js` dengan konfigurasi color space yang benar (`SRGBColorSpace` vs `NoColorSpace`).
+- **`fal-3d`**:
+  - Mengubah foto 2D atau prompt menjadi model 3D nyata (`.glb` / `.gltf`) menggunakan model AI terdepan (Microsoft Trellis, Tencent Hunyuan3D v2, Tripo3D).
+
+### 10. ⚙️ Global Configurations (`.gemini-config/`)
 - `skills.json`: Pendaftaran seluruh path repositori ke Antigravity.
 - `mcp_config.json`: Konfigurasi Model Context Protocol.
 
@@ -119,7 +130,8 @@ Script akan otomatis:
 ---
 
 ## 🏷️ Release History
-- **v1.5.0**: Penambahan **Motion Design & Choreography Suite** (4 skills: LottieFiles Universal Animation Principles + FrankX Motion Director, Site Choreography, dan Web Motion Auditor). Melengkapi *The Trinity of Motion* (Motion Design + GSAP + Three.js). Total **239 skills** terpasang global.
+- **v1.6.0**: Penambahan **3D Web Image & PBR Suite** (`image-to-3d-web`, `fal-3d`). Kemampuan memindai folder foto lokal mana pun, menganalisis properti visual, dan mengembangkannya menjadi peta PBR lengkap (Normal, Roughness, AO, Displacement), tekstur seamless, Power-of-Two GPU optimization, dan generasi mesh 3D / Three.js code. Total **241 skills** terpasang global.
+- **v1.5.0**: Penambahan **Motion Design & Choreography Suite** (4 skills: LottieFiles Universal Animation Principles + FrankX Motion Director, Site Choreography, dan Web Motion Auditor). Melengkapi *The Trinity of Motion* (Motion Design + GSAP + Three.js). Total 239 skills terpasang global.
 - **v1.4.0**: Penambahan **GSAP Animation & Creative 3D Web Suite** (13 skills: 8 skills resmi GreenSock + 5 skills bridging Three.js scrollytelling & Awwwards motion). Total 235 skills terpasang global.
 - **v1.3.0**: Penambahan **Three.js 3D Graphics & WebGPU Suite** (43 skills lengkap: WebGL r186, WebGPU / TSL procedural simulation, Rapier/Cannon physics, spatial audio, dan WebXR). Total 222 skills terpasang global.
 - **v1.2.0**: Penambahan modul **Security Audit & Bug Hunter Suite** (`owasp-security`, `security-audit`) dan master katalog **Awesome Agent Skills** (1,497+ skills terkurasi). Total 179 skills terpasang global.

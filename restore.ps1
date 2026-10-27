@@ -137,6 +137,13 @@ if (Test-Path "$scriptRoot\skills\motion") {
     Copy-Item -Recurse -Force "$scriptRoot\skills\motion\*" $motionDest
 }
 
+# 3D Web Image & PBR Suite (image-to-3d-web, fal-3d)
+if (Test-Path "$scriptRoot\skills\image-to-3d") {
+    $image3dDest = Join-Path $geminiDir "image-to-3d-skills"
+    New-Item -ItemType Directory -Force -Path $image3dDest | Out-Null
+    Copy-Item -Recurse -Force "$scriptRoot\skills\image-to-3d\*" $image3dDest
+}
+
 # 4. Buat Directory Junctions di ~/.gemini/config/skills/
 Write-Host "[4/4] Mendaftarkan Junctions di global skills directory..." -ForegroundColor Yellow
 $allSkillMds = Get-ChildItem -Recurse $geminiDir -Filter "SKILL.md" -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Directory
