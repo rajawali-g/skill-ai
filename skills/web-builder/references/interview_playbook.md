@@ -8,7 +8,7 @@ Panduan naskah wawancara percakapan terstruktur (*Conversational Script*) untuk 
 
 1. **Maksimal 3-4 Pertanyaan per Putaran**: Jangan membombardir pengguna dengan daftar pertanyaan panjang.
 2. **Selalu Berikan Rekomendasi Konkret**: Pengguna seringkali tidak tahu nama font atau kode warna. Tawarkan pilihan terkurasi (A, B, C) dengan visual preview verbal.
-3. **Konfirmasi Sebelum Eksekusi**: Terbitkan **Project Blueprint** dan mintalah persetujuan pengguna sebelum membuat berkas kode.
+3. **Blueprint Proporsional**: Untuk proyek baru/besar, rangkum blueprint. Jangan meminta persetujuan ulang jika pengguna sudah memberi mandat jelas; langsung kerjakan perubahan kecil.
 
 ---
 
@@ -17,11 +17,19 @@ Panduan naskah wawancara percakapan terstruktur (*Conversational Script*) untuk 
 ### Naskah Pembuka Sistem
 ```text
 Halo! Saya Web Architect Anda dari WebBuilder Suite. 
-Kita akan merancang website yang memukau, berstandar Awwwards, cepat, dan sesuai dengan visi Anda melalui beberapa langkah dialog singkat.
+Kita akan merancang website yang memukau, sesuai kebutuhan, cepat, dan mudah dikembangkan melalui beberapa langkah dialog singkat.
 
 Mari mulai dari fondasi utama:
 1. Apa jenis / niche website yang ingin kita buat? (Contoh: Profil Daerah/Pariwisata, SaaS Dashboard, Portofolio Kreatif, Profil Perusahaan, atau Toko Online?)
 2. Siapa audiens atau target pengunjung utama website ini? (Contoh: Turis lokal & mancanegara, calon investor, pembeli produk, atau masyarakat umum?)
+
+💡 Alternatif Cepat (Preset Siap Pakai):
+Jika ingin langsung memulai dengan arketipe teruji, Anda juga dapat menyebutkan preset berikut:
+- "Pakai preset business, government, education, atau preset lain yang paling sesuai (gunakan preset pemerintah hanya bila memang dibutuhkan)
+- "Pakai preset tourism" (Pariwisata & Budaya)
+- "Pakai preset saas" (SaaS & Produk Digital)
+- "Pakai preset portfolio" (Portofolio Kreatif)
+- "Pakai preset ecommerce" (Toko Online Modern)
 ```
 
 ### Rekomendasi Nama & Tagline (Otomatis setelah Niche & Persona dijawab)
@@ -55,7 +63,7 @@ Silakan pilih opsi A, B, C, atau tuliskan nama & tagline Anda sendiri!
 Terkait identitas visual logo dan favicon:
 📁 Opsi A: Apakah Anda sudah memiliki file logo (SVG/PNG) dan favicon di folder proyek?
 ✨ Opsi B: Atau Anda ingin sistem bantu buatkan otomatis? 
-(Sistem akan membuat Vector SVG Logo modern yang tajam, ringan, selaras tema, serta Favicon Suite lengkap yang langsung terhubung ke browser).
+(Sistem dapat membuat logo SVG dan favicon SVG sederhana; fallback PNG/ICO hanya dibuat jika diminta dan benar-benar dihasilkan).
 ```
 
 ### Pemilihan Tipe Tampilan (Layout Paradigm)
@@ -102,7 +110,7 @@ Untuk nuansa visual dan estetika, mana yang paling mewakili karakter brand Anda?
 
 ## 🗄️ Putaran 3: Rekomendasi Tech Stack & Database
 
-Sistem dapat merekomendasikan salah satu dari 7 Arketipe Stack Web (berdasarkan **[tech_stack_matrix.md](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)**) atau menanyakan preferensi pengguna:
+Sistem dapat merekomendasikan salah satu dari 7 Arketipe Stack Web (berdasarkan **[tech_stack_matrix.md](tech_stack_matrix.md)**) atau menanyakan preferensi pengguna:
 ```text
 Berdasarkan jenis website yang Anda inginkan, berikut rekomendasi arsitektur teknologi (Tech Stack) & opsi databasenya:
 
@@ -164,7 +172,7 @@ Anda dapat memilih satu atau beberapa klaster di bawah ini, atau cukup sebutkan 
 
 ## 📐 Tahap Blueprint & Konfirmasi
 
-Setelah seluruh putaran dijawab, sistem merangkum **Project Blueprint**:
+Untuk proyek baru atau perubahan besar, rangkum **Project Blueprint** dari informasi yang memang diperlukan. Lewati putaran yang sudah terjawab, dan jangan mewajibkan semua bagian untuk setiap proyek:
 ```markdown
 ### 📐 Project Blueprint: [Nama Website]
 - **Nama Website**: [Nama Pilihan]
@@ -183,7 +191,7 @@ Setelah seluruh putaran dijawab, sistem merangkum **Project Blueprint**:
   5. Fitur Interaktif (Peta / Chatbot / Filter)
   6. Footer Informasi & Navigasi
 
-Apakah Blueprint ini sudah sesuai dengan visi Anda, atau ada poin yang ingin kita sesuaikan sebelum kode dibuat?
+Jika ada keputusan penting yang belum jelas, tanyakan konfirmasi. Bila pengguna telah memberi mandat jelas, lanjutkan implementasi tanpa meminta persetujuan ulang.
 ```
 
-Setelah pengguna mengonfirmasi (`"Lanjut"`, `"Setuju"`, atau `"Buat sekarang"`), sistem segera merakit kode website secara modular.
+Jika keputusan penting masih perlu dikonfirmasi, lanjutkan perakitan setelah jawabannya. Jika brief sudah memberi arahan jelas, mulai implementasi tanpa konfirmasi tambahan.

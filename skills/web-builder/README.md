@@ -68,6 +68,7 @@ flowchart TD
 Agar percakapan tidak melelahkan pengguna, sistem tidak melontarkan puluhan pertanyaan sekaligus, melainkan menggunakan metode **Chunked Guided Inquiry** (3-4 pertanyaan kunci per putaran) dengan opsi rekomendasi yang jelas.
 
 ### Putaran 1: Identitas, Persona, Nama, Logo, Favicon & Tipe Tampilan
+`nCatatan: daftar dan urutan di bawah adalah bahan referensi. Ajukan hanya pertanyaan yang belum terjawab, maksimal tiga pertanyaan per giliran; untuk perubahan kecil jangan jalankan wawancara penuh.
 1. **Jenis & Niche**: *"Website apa yang ingin kita bangun? (Contoh: Landing Page Produk, Profil Daerah/Pariwisata, Portofolio Kreatif, SaaS Dashboard, atau Profil Bisnis?)"*
 2. **Audiens Utama & Persona**: *"Siapa target pengunjung website ini? (Masyarakat umum, calon investor, turis lokal/asing, atau profesional?)"*
 3. **Rekomendasi Nama & Deskripsi Website (Brand Identity)**:
@@ -81,7 +82,7 @@ Agar percakapan tidak melelahkan pengguna, sistem tidak melontarkan puluhan pert
    - 📁 **Opsi A (Milik Sendiri / Existing Assets)**: Pengguna menyediakan file logo (`logo.svg` / `logo.png`) dan favicon (`favicon.ico` / `favicon.svg`) di folder proyek.
    - ✨ **Opsi B (Sistem Bantu Buatkan Otomatis)**: Jika pengguna belum memiliki logo/favicon, sistem akan otomatis:
      - Merancang **Modern Vector Logo (SVG)** berbasis kode murni (tajam di semua resolusi, ringan, dan selaras dengan tema website).
-     - Menghasilkan **Favicon Suite** (`favicon.svg`, fallback PNG/ICO, dan apple-touch-icon) dengan simbol geometris/monogram yang kontras dan langsung terhubung di `<head>`.
+     - Menghasilkan `favicon.svg`; fallback PNG/ICO dan apple-touch icon perlu dibuat terpisah bila dibutuhkan.
 5. **Tindakan Kunci (Primary CTA)**: *"Apa yang Anda ingin pengunjung lakukan saat membuka web? (Menghubungi via WhatsApp, reservasi, unduh panduan, atau mulai eksplorasi?)"*
 6. **Tipe Tampilan Website (Layout & Presentation Paradigm)**:
    Sistem memaparkan matriks 7 tipe tampilan standar industri berikut agar pengguna dapat memilih arsitektur layout yang paling tepat:
@@ -103,7 +104,7 @@ Sistem merekomendasikan 3 gaya yang paling cocok berdasarkan profil industri (te
 - **Gaya C: Immersive Nature / 3D Cinematic** (Segar, warna alam hidup, canvas 3D interaktif, foto bertekstur nyata).
 
 ### Putaran 3: Rekomendasi Tech Stack & Pemilihan Database (Fase 2)
-Sistem menanyakan dan menyepakati kebutuhan stack komputasi serta persistensi data website. WebBuilder didukung oleh **[Master Matriks 545 Teknologi Web](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)** untuk memberikan rekomendasi stack terbaik sesuai kasus penggunaan:
+Sistem menanyakan dan menyepakati kebutuhan stack komputasi serta persistensi data website. WebBuilder didukung oleh **[Master Matriks 545 Teknologi Web](references/tech_stack_matrix.md)** untuk memberikan rekomendasi stack terbaik sesuai kasus penggunaan:
 
 #### 🎯 Rekomendasi Stack Berdasarkan Arketipe Proyek:
 | Arketipe Proyek | Rekomendasi Stack | Karakteristik & Pertimbangan |
@@ -125,7 +126,7 @@ Sistem menanyakan dan menyepakati kebutuhan stack komputasi serta persistensi da
 | **4** | **PostgreSQL** | RDBMS tingkat lanjut (*object-relational*), mendukung kueri kompleks, JSONB indexing super cepat, geospasial (PostGIS). | Platform SaaS modern, sistem analitik data, portal skala enterprise, cloud database modern (Supabase / Neon). | `/ci4` atau `/vue` (Prisma / Supabase SDK) |
 | **5** | **None / Static Web** | Tanpa database backend; seluruh konten dikelola langsung di file HTML/JSON statis. | Landing page presentasi, company profile statis, web portofolio personal. | `/web-builder` murni |
 
-*(Lihat katalog lengkap 545 teknologi, framework, dan tools di **[tech_stack_matrix.md](file:///e:/project/htdocs/skill-ai/skills/web-builder/references/tech_stack_matrix.md)**)*
+*(Lihat katalog lengkap 545 teknologi, framework, dan tools di **[tech_stack_matrix.md](references/tech_stack_matrix.md)**)*
 
 
 ### Putaran 4: Pemilihan Fitur & Integrasi Spesifik (Katalog 55 Fitur)
@@ -148,11 +149,11 @@ Sebelum kode dieksekusi, sistem wajib memaparkan **Blueprint Singkat** dalam for
 ### 📐 Project Blueprint: [Nama Website]
 - **Nama Website**: MinselScape / Pesona Minsel (Pilihan Rekomendasi AI atau Input Kustom Pengguna)
 - **Tagline / Meta Deskripsi**: "The Living Volcanic Highlands — Eksplorasi Keindahan Alam & Warisan Leluhur"
-- **Logo & Favicon**: Dibuatkan sistem otomatis (Minimalist Vector SVG Logo + High-DPI Favicon Suite)
+- **Logo & Favicon**: Logo SVG dan favicon SVG sederhana dari scaffolder
 - **Niche & Tujuan**: Profil Interaktif Pariwisata Minahasa Selatan
 - **Tipe Tampilan**: One-Page Scrollytelling (Alur linear berbabak dengan sticky anchor)
 - **Database**: PostgreSQL (Supabase cloud / lokal) - Tabel: `destinations`, `visitor_inquiries`, `events`
-- **Fitur & Integrasi Terpilih**: 
+- **Fitur yang direncanakan (belum tentu diimplementasikan)**: 
   - #1 Notifikasi & Alert Modern
   - #2 Peta & Lokasi Interaktif (Leaflet / Mapbox)
   - #4 Live Chat & WhatsApp Button
@@ -185,7 +186,7 @@ Sebelum kode dieksekusi, sistem wajib memaparkan **Blueprint Singkat** dalam for
 
 ---
 
-## 🧩 5. Master Katalog 55 Fitur & Integrasi Standar WebBuilder
+## 🧩 5. Master Katalog 55 Fitur & Integrasi WebBuilder
 
 Berikut adalah daftar lengkap 55 kapabilitas integrasi dan fitur yang dapat diorkestrasi oleh WebBuilder secara terstruktur:
 
@@ -251,7 +252,7 @@ Berikut adalah daftar lengkap 55 kapabilitas integrasi dan fitur yang dapat dior
 
 ## 🏗️ 6. Standar Rekayasa Kode (Engineering Standards)
 
-Untuk memastikan website memiliki kualitas standar **Awwwards** dan siap produksi:
+Gunakan panduan rekayasa berikut sebagai sasaran desain. Scaffold tidak menjamin sertifikasi aksesibilitas, keamanan, performa, atau kesiapan produksi:
 
 1. **Struktur File yang Bersih**:
    ```text
@@ -285,12 +286,12 @@ WebBuilder bertindak sebagai **Konduktor Utama** yang memanggil spesialisasi lai
 
 | Fase Pembuatan | Skill Spesialis yang Dipanggil | Tugas Spesifik |
 | :--- | :--- | :--- |
-| **Gaya & Warna** | [`/ui-ux`](file:///C:/Users/User/.gemini/config/skills/ui-ux/SKILL.md) | Memilih 1 dari 192 palet industri dan tipografi Google Fonts |
-| **Foto & Tekstur** | [`/image-3d`](file:///C:/Users/User/.gemini/config/skills/image-3d/SKILL.md) | Memindai folder foto lokal dan menghasilkan PBR texture maps |
-| **Visual 3D** | [`/threejs`](file:///C:/Users/User/.gemini/config/skills/threejs/SKILL.md) | Memasang ambient canvas 3D, pencahayaan IBL, dan objek interaktif |
-| **Animasi Scroll** | [`/gsap`](file:///C:/Users/User/.gemini/config/skills/gsap/SKILL.md) | Membuat scrollytelling bertingkat dengan ScrollTrigger |
-| **Ritme Gerak** | [`/motion`](file:///C:/Users/User/.gemini/config/skills/motion/SKILL.md) | Mengatur kurva easing alami dan membatasi stagger delay |
-| **Audit Form & Keamanan** | [`/security`](file:///C:/Users/User/.gemini/config/skills/security/SKILL.md) | Menjaga form kontak dari celah XSS & injection |
+| **Gaya & Warna** | `/ui-ux` | Memilih 1 dari 192 palet industri dan tipografi Google Fonts |
+| **Foto & Tekstur** | `/image-3d` | Memindai folder foto lokal dan menghasilkan PBR texture maps |
+| **Visual 3D** | `/threejs` | Memasang ambient canvas 3D, pencahayaan IBL, dan objek interaktif |
+| **Animasi Scroll** | `/gsap` | Membuat scrollytelling bertingkat dengan ScrollTrigger |
+| **Ritme Gerak** | `/motion` | Mengatur kurva easing alami dan membatasi stagger delay |
+| **Audit Form & Keamanan** | `/security` | Menjaga form kontak dari celah XSS & injection |
 
 ---
 
@@ -315,14 +316,40 @@ Sistem akan langsung menerapkan perubahan terfokus pada CSS/JS tanpa merusak str
 
 ---
 
-## 📅 8. Roadmap Pengembangan Modul WebBuilder
+## 🛠️ 8. Helper Scripts & Pustaka Komponen
+
+1. **`scripts/scaffold_web.py`**:
+   Generator starter web dengan preset lintas kebutuhan (`government`, `tourism`, `saas`, `portfolio`, `ecommerce`, `business`, `education`, `community`, `events`), opsi custom sebagai default mode interaktif (`-i` / `--interactive`), serta halaman multi-page (`--display multi-page`). Preset dan konten yang dihasilkan perlu disesuaikan dengan brief pengguna; database/fitur di blueprint tidak otomatis diimplementasikan:
+   ```bash
+   # Contoh scaffold instan dengan preset
+   python skills/web-builder/scripts/scaffold_web.py --preset tourism --output "./pesona-minsel"
+
+   # Contoh mode interaktif terpandu
+   python skills/web-builder/scripts/scaffold_web.py --interactive
+   ```
+
+2. **`scripts/audit_site.py`**:
+   Pemeriksa pola sederhana (bukan audit kepatuhan atau kesiapan produksi). Gunakan hanya sebagai pemeriksaan awal dan tinjau hasilnya:
+   ```bash
+   python skills/web-builder/scripts/audit_site.py --dir "./pesona-minsel"
+   ```
+
+3. **`references/component_snippets.md`**:
+   Katalog snippet komponen siap pakai (Accordion FAQ, Peta Leaflet, Grafik Chart.js, Modal Dialog, Form Kontak Honeypot, Slider Banner, dan Counter Stats).
+
+---
+
+## 📅 9. Roadmap Pengembangan Modul WebBuilder
 
 - [x] **Fase 1: Framework & Konsep Dasar** (`skills/web-builder/README.md`)
 - [x] **Fase 2: Pembuatan Definisi Skill Resmi** (`skills/web-builder/SKILL.md`)
 - [x] **Fase 3: Script Pembantu Scaffolding Interaktif** (`scripts/scaffold_web.py`)
 - [x] **Fase 4: Playbook Pertanyaan Terstruktur** (`references/interview_playbook.md`)
 - [x] **Fase 5: Katalog 55 Fitur & Integrasi Standar** (`references/feature_catalog.md`)
-- [x] **Fase 6: Pengujian & Registrasi Global Antigravity** (`/web-builder`)
+- [x] **Fase 6: Validasi kompatibilitas dan pendaftaran global Antigravity** (`/web-builder`)
 - [x] **Fase 7: Master Matriks 545 Teknologi Web & Rekomendasi Stack** (`references/tech_stack_matrix.md`)
+- [x] **Fase 8: Pustaka Snippet Komponen Siap Pakai** (`references/component_snippets.md`)
+- [x] **Fase 9: Skrip Pemeriksa Kualitas & Heuristik Web** (`scripts/audit_site.py`)
+
 
 
