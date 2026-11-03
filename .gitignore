@@ -25,3 +25,4 @@ __pycache__/
 *.local.*
 .claude/settings.local.json
 .codex/config.local.toml
+.agents/

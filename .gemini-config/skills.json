@@ -49,10 +49,19 @@
                         "path":  "${USER_HOME}/.gemini/claude-code-owasp/.claude/skills"
                     },
                     {
+                        "path":  "${USER_HOME}/.gemini/security-audit-skill"
+                    },
+                    {
                         "path":  "${USER_HOME}/.gemini/security-audit-skill/skills"
                     },
                     {
-                        "path":  "${USER_HOME}/.gemini/awesome-agent-skills/skills"
+                        "path":  "${USER_HOME}/.gemini/awesome-agent-skills"
+                    },
+                    {
+                        "path":  "${USER_HOME}/.agents/skills/ui-ux-pro-max"
+                    },
+                    {
+                        "path":  "${USER_HOME}/.gemini/config/skills"
                     },
                     {
                         "path":  "${USER_HOME}/.gemini/threejs-core-skills"

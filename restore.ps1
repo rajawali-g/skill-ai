@@ -23,7 +23,7 @@ Write-Host 'Antigravity skills restore' -ForegroundColor Cyan
 Write-Host "Repository: $scriptRoot"
 Write-Host "User profile: $userHome"
 
-$coreSkills = @('ui-ux-pro-max', 'brand', 'banner-design', 'design', 'design-system', 'slides', 'ui-styling', 'web-builder')
+$coreSkills = @('ui-ux-pro-max', 'brand', 'banner-design', 'design', 'design-system', 'slides', 'ui-styling', 'web-builder', 'anti-slop')
 $copyMappings = @()
 foreach ($skill in $coreSkills) {
     $copyMappings += [pscustomobject]@{
